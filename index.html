@@ -3,131 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Comercial — Remington</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Dashboard Comercial — Black+Decker Paraguay 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#F5F5F5;
   --surface:#FFFFFF;
-  --surface2:#EFEFEF;
-  --text:#1A1A1A;
-  --text2:#595959;
-  --text3:#8C8C8C;
+  --surface2:#F0F0F0;
+  --text:#111111;
+  --text2:#444444;
+  --text3:#888888;
   --border:rgba(0,0,0,.08);
-  --red:#D50000;
-  --red-light:#FDE8E8;
-  --red-mid:#F6A6A6;
-  --green:#0F8A65;
-  --green-light:#E6F5F0;
-  --amber:#D97706;
-  --amber-light:#FEF3C7;
-  --blue:#2563EB;
-  --blue-light:#DBEAFE;
+  --orange:#F26522;
+  --orange-dark:#D4581A;
+  --orange-light:#FEF0E8;
+  --orange-mid:#FBCFB0;
+  --black:#1A1A1A;
+  --green:#0A7A5A;
+  --green-light:#E3F5EE;
+  --red:#C0392B;
+  --red-light:#FDECEA;
+  --amber:#B45309;
+  --amber-light:#FEF3E2;
+  --blue:#1A4FD4;
+  --blue-light:#E8EEFA;
   --radius:10px;
 }
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
 
-header{padding:1.5rem 2.5rem;background:var(--surface);border-bottom:3px solid var(--red);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.header-left{display:flex;align-items:center;gap:1.5rem}
-.header-logo{height:45px;width:auto;object-fit:contain}
-.header-divider{width:1px;height:40px;background:var(--border)}
-.header-title h1{font-size:1.4rem;font-weight:800;letter-spacing:-.03em;color:var(--text)}
-.header-title p{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--text3);margin-top:.2rem}
-.header-badge{background:var(--text);color:#fff;padding:.4rem 1rem;border-radius:100px;font-family:'DM Mono',monospace;font-size:.72rem;font-weight:500;white-space:nowrap}
+/* HEADER */
+header{padding:1.2rem 2rem;background:var(--black);border-bottom:3px solid var(--orange);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:sticky;top:0;z-index:100}
+.header-left{display:flex;align-items:center;gap:1.2rem}
+.header-logo{height:38px;width:auto;filter:brightness(10)}
+.header-divider{width:1px;height:36px;background:rgba(255,255,255,.2)}
+.header-title h1{font-size:1.05rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+.header-title p{font-family:'DM Mono',monospace;font-size:.67rem;color:rgba(255,255,255,.5);margin-top:.15rem}
+.header-badge{background:var(--orange);color:#fff;padding:.35rem .9rem;border-radius:100px;font-family:'DM Mono',monospace;font-size:.67rem;font-weight:500;white-space:nowrap}
 
-nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;overflow-x:auto;scrollbar-width:none;gap:0}
+/* NAV */
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;overflow-x:auto;scrollbar-width:none;gap:0}
 nav::-webkit-scrollbar{display:none}
-.nav-tab{padding:.85rem 1.1rem;font-size:.78rem;font-weight:600;cursor:pointer;border-bottom:2.5px solid transparent;color:var(--text3);background:none;border-top:none;border-left:none;border-right:none;font-family:'Plus Jakarta Sans',sans-serif;white-space:nowrap;transition:color .15s,border-color .15s;letter-spacing:.01em}
+.nav-tab{padding:.8rem 1rem;font-size:.73rem;font-weight:600;cursor:pointer;border-bottom:2.5px solid transparent;color:var(--text3);background:none;border-top:none;border-left:none;border-right:none;font-family:'Inter',sans-serif;white-space:nowrap;transition:color .15s,border-color .15s;letter-spacing:.01em}
 .nav-tab:hover{color:var(--text)}
-.nav-tab.active{color:var(--red);border-bottom-color:var(--red)}
+.nav-tab.active{color:var(--orange);border-bottom-color:var(--orange)}
 
-main{padding:2rem 2.5rem;max-width:1300px;margin:0 auto}
+/* MAIN */
+main{padding:1.75rem 2rem;max-width:1360px;margin:0 auto}
 .panel{display:none}
 .panel.active{display:block}
 
-/* KPI cards */
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.85rem;margin-bottom:1.75rem}
-.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.4rem;position:relative;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.02)}
-.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--text)}
-.kpi.kpi-red::before{background:var(--red)}
-.kpi .k-label{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.5rem}
-.kpi .k-val{font-size:1.85rem;font-weight:800;letter-spacing:-.04em;color:var(--text);line-height:1}
-.kpi .k-sub{font-size:.74rem;color:var(--text2);margin-top:.35rem}
-.kpi .k-badge{display:inline-flex;align-items:center;gap:3px;font-size:.65rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:100px;margin-top:.4rem}
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.8rem;margin-bottom:1.5rem}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.3rem;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange)}
+.kpi .k-label{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text3);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.4rem}
+.kpi .k-val{font-size:1.75rem;font-weight:800;letter-spacing:-.04em;color:var(--text);line-height:1}
+.kpi .k-sub{font-size:.72rem;color:var(--text2);margin-top:.3rem}
+.kpi .k-badge{display:inline-flex;align-items:center;gap:3px;font-size:.62rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:100px;margin-top:.35rem}
+
+/* Cards */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.3rem}
+.card-title{font-size:.67rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.09em;margin-bottom:1.1rem;font-family:'DM Mono',monospace}
+.card-title span{color:var(--orange);margin-right:.4rem}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem}
+.full-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.3rem;margin-bottom:1rem}
+.chart-wrap{position:relative;width:100%;height:250px}
+.chart-wrap-lg{position:relative;width:100%;height:310px}
+.chart-wrap-md{position:relative;width:100%;height:200px}
+.mb1{margin-bottom:1rem}
+.mb15{margin-bottom:1.5rem}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:.6rem}
+table{width:100%;border-collapse:collapse;font-family:'DM Mono',monospace;font-size:.7rem}
+thead tr{border-bottom:2px solid var(--border)}
+th{text-align:left;padding:.5rem .65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;font-size:.6rem;font-weight:600;white-space:nowrap}
+th.num,td.num{text-align:right}
+td{padding:.4rem .65rem;color:var(--text2);border-bottom:1px solid var(--border);white-space:nowrap}
+td.name{color:var(--text);max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+td.desc{color:var(--text);max-width:320px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+tr:last-child td{border-bottom:none}
+tr.total-row td{border-top:2px solid var(--border);font-weight:700;color:var(--text);background:var(--surface2)}
+tr.avg-row td{border-top:1px dashed var(--border);font-weight:600;color:var(--orange);background:var(--orange-light)}
+tr:hover td{background:#FAFAF9}
+.badge{display:inline-block;font-size:.62rem;padding:1px 7px;border-radius:100px}
 .up{background:var(--green-light);color:var(--green)}
 .down{background:var(--red-light);color:var(--red)}
 .flat{background:var(--surface2);color:var(--text2)}
-
-/* Cards */
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;box-shadow:0 1px 3px rgba(0,0,0,.02)}
-.card-title{font-size:.7rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1.2rem;font-family:'DM Mono',monospace}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.2rem}
-.full-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;margin-bottom:1.2rem;box-shadow:0 1px 3px rgba(0,0,0,.02)}
-.chart-wrap{position:relative;width:100%;height:260px}
-.chart-wrap-lg{position:relative;width:100%;height:320px}
-
-/* Tables */
-.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:.8rem}
-table{width:100%;border-collapse:collapse;font-family:'DM Mono',monospace;font-size:.72rem}
-thead tr{border-bottom:2px solid var(--border)}
-th{text-align:left;padding:.5rem .7rem;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;font-size:.63rem;font-weight:600}
-th.num{text-align:right}
-td{padding:.5rem .7rem;color:var(--text2);border-bottom:1px solid var(--border)}
-td.num{text-align:right;font-variant-numeric:tabular-nums}
-td.name{color:var(--text);max-width:240px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-tr:last-child td{border-bottom:none}
-tr.total-row td{border-top:2px solid var(--border);font-weight:700;color:var(--text);background:var(--surface2)}
-tr:hover td{background:#FAFAFA}
-.badge{display:inline-block;font-size:.62rem;padding:2px 8px;border-radius:100px;font-weight:500}
 .badge.up{background:var(--green-light);color:var(--green)}
 .badge.down{background:var(--red-light);color:var(--red)}
 .badge.flat{background:var(--surface2);color:var(--text2)}
-.badge.reg{background:var(--blue-light);color:var(--blue)}
-.badge.disc{background:var(--amber-light);color:var(--amber)}
 .badge.brk{background:var(--red-light);color:var(--red);font-weight:700}
 .badge.ok{background:var(--green-light);color:var(--green)}
+.badge.warn{background:var(--amber-light);color:var(--amber)}
+.badge.reg{background:var(--blue-light);color:var(--blue)}
 
-/* Ranking bars */
-.rank-list{display:flex;flex-direction:column;gap:8px}
+/* Ranking */
+.rank-list{display:flex;flex-direction:column;gap:6px}
 .rank-item{display:flex;align-items:center;gap:8px}
-.rank-num{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text3);width:20px;text-align:right}
-.rank-name{font-size:.75rem;width:160px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text);font-weight:500}
-.bar-bg{flex:1;background:var(--surface2);border-radius:4px;height:8px;overflow:hidden}
-.bar-fill{height:100%;border-radius:4px;background:var(--red)}
-.rank-val{font-family:'DM Mono',monospace;font-size:.73rem;color:var(--text2);width:46px;text-align:right}
+.rank-num{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text3);width:18px;text-align:right;flex-shrink:0}
+.rank-name{font-size:.73rem;width:150px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.bar-bg{flex:1;background:var(--surface2);border-radius:3px;height:7px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;background:var(--orange)}
+.rank-val{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--text2);width:44px;text-align:right;flex-shrink:0}
+.rank-pct{font-family:'DM Mono',monospace;font-size:.62rem;width:52px;text-align:right;flex-shrink:0}
 
-/* Select */
-.select-row{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem;flex-wrap:wrap}
-.select-row label{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;font-weight:600}
-select{font-family:'DM Mono',monospace;font-size:.75rem;padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;font-weight:500}
-select:focus{outline:2px solid var(--red);outline-offset:1px}
+/* Section headers */
+.section-title{font-size:.78rem;font-weight:700;color:var(--text);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.section-title::before{content:'';display:inline-block;width:3px;height:14px;background:var(--orange);border-radius:2px}
 
-/* Insight cards */
-.insight-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-bottom:1.2rem}
-.insight{border-radius:var(--radius);padding:1.1rem 1.2rem;border:1px solid transparent}
-.insight.warn{background:var(--red-light);border-color:rgba(213,0,0,.15)}
-.insight.good{background:var(--green-light);border-color:rgba(15,138,101,.15)}
-.insight.info{background:var(--blue-light);border-color:rgba(37,99,235,.15)}
-.insight.amber{background:var(--amber-light);border-color:rgba(217,119,6,.15)}
-.insight .i-tag{font-size:.62rem;font-family:'DM Mono',monospace;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem}
-.insight.warn .i-tag{color:var(--red)}
-.insight.good .i-tag{color:var(--green)}
-.insight.info .i-tag{color:var(--blue)}
-.insight.amber .i-tag{color:var(--amber)}
-.insight .i-text{font-size:.8rem;line-height:1.5;color:var(--text)}
+/* Selectors */
+select{font-family:'DM Mono',monospace;font-size:.72rem;padding:.35rem .6rem;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);cursor:pointer;outline:none}
+select:focus{border-color:var(--orange)}
+.filter-row{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;flex-wrap:wrap}
+.filter-label{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.06em}
 
-.section-header{font-family:'DM Mono',monospace;font-size:.68rem;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;margin:1.8rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
-
-footer{margin:2rem 2.5rem 1.5rem;border-top:1px solid var(--border);padding-top:1rem;font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+/* Quiebre highlight */
+td.quiebre{background:var(--red-light);color:var(--red);font-weight:700}
+td.ok-cell{background:var(--green-light);color:var(--green)}
+td.warn-cell{background:var(--amber-light);color:var(--amber)}
 
 @media(max-width:768px){
-  header{padding:1.2rem}
-  main{padding:1.2rem}
-  .two-col{grid-template-columns:1fr}
-  .kpi .k-val{font-size:1.5rem}
-  .rank-name{width:120px}
+  main{padding:1rem}
+  .two-col,.three-col{grid-template-columns:1fr}
+  header{padding:.9rem 1rem}
+  .header-title h1{font-size:.9rem}
 }
 </style>
 </head>
@@ -135,983 +138,731 @@ footer{margin:2rem 2.5rem 1.5rem;border-top:1px solid var(--border);padding-top:
 
 <header>
   <div class="header-left">
-    <img src="https://www.remingtonlatam.com/py/wp-content/uploads/sites/33/2019/08/logo_remington_est_n.png" class="header-logo" alt="Remington" onerror="this.style.display='none'">
+    <img src="https://www.blackanddecker.com/cdn/shop/t/182/assets/Logo-Grey.svg?v=146770065678055879911727771188" class="header-logo" alt="Black+Decker">
     <div class="header-divider"></div>
     <div class="header-title">
-      <h1>Dashboard Comercial</h1>
-      <p>Análisis de Ventas Global — Remington · Abril 2026</p>
+      <h1>Dashboard Comercial — Paraguay</h1>
+      <p>ANÁLISIS DE VENTAS · FORECAST · QUIEBRES · 2021–2026</p>
     </div>
   </div>
-  <div class="header-badge">REPORTE INTERNO</div>
+  <div class="header-badge">ACTUALIZADO ABR 2026</div>
 </header>
 
 <nav>
-  <button class="nav-tab active" onclick="showPanel('p1',this)">📊 Venta por Año</button>
-  <button class="nav-tab" onclick="showPanel('p2',this)">🏆 Ranking 2025</button>
-  <button class="nav-tab" onclick="showPanel('p3',this)">📈 Variación 21–25</button>
-  <button class="nav-tab" onclick="showPanel('p4',this)">⭐ Top Categorías</button>
-  <button class="nav-tab" onclick="showPanel('p5',this)">🔍 Desglose SKU</button>
-  <button class="nav-tab" onclick="showPanel('p6',this)">📋 Ventas Cat × Año</button>
-  <button class="nav-tab" onclick="showPanel('p7',this)">👥 Cobertura Clientes</button>
-  <button class="nav-tab" onclick="showPanel('p8',this)">🎯 Forecast 2026</button>
-  <button class="nav-tab" onclick="showPanel('p9',this)">⚡ Análisis Q1</button>
-  <button class="nav-tab" onclick="showPanel('p10',this)">🚨 Quiebres</button>
+  <button class="nav-tab active" onclick="showPanel('resumen')">📊 Resumen General</button>
+  <button class="nav-tab" onclick="showPanel('ranking')">🏆 Ranking Categorías</button>
+  <button class="nav-tab" onclick="showPanel('desglose')">🔍 Desglose por Categoría</button>
+  <button class="nav-tab" onclick="showPanel('cobertura')">👥 Cobertura de Clientes</button>
+  <button class="nav-tab" onclick="showPanel('forecast')">📈 Forecast 2026</button>
+  <button class="nav-tab" onclick="showPanel('q1')">⚡ Análisis Q1</button>
+  <button class="nav-tab" onclick="showPanel('quiebres')">⚠️ Quiebres de Stock</button>
 </nav>
 
 <main>
 
-<div id="p1" class="panel active">
-  <div class="kpi-grid">
-    <div class="kpi"><div class="k-label">Total 2021</div><div class="k-val">19.058</div><div class="k-sub">unidades vendidas</div></div>
-    <div class="kpi"><div class="k-label">Total 2022</div><div class="k-val">20.293</div><div class="k-sub">unidades vendidas</div><span class="k-badge up">▲ +6,5%</span></div>
-    <div class="kpi"><div class="k-label">Total 2023</div><div class="k-val">25.784</div><div class="k-sub">unidades vendidas</div><span class="k-badge up">▲ +27,1%</span></div>
-    <div class="kpi"><div class="k-label">Total 2024</div><div class="k-val">34.656</div><div class="k-sub">unidades vendidas</div><span class="k-badge up">▲ +34,4%</span></div>
-    <div class="kpi kpi-red"><div class="k-label">Total 2025</div><div class="k-val">33.508</div><div class="k-sub">unidades vendidas</div><span class="k-badge down">▼ −3,3%</span></div>
-    <div class="kpi"><div class="k-label">2026 YTD (Q1)</div><div class="k-val">9.728</div><div class="k-sub">Ene–Abr 2026</div></div>
-  </div>
-
-  <div class="two-col">
+<!-- ===================== PANEL 1: RESUMEN ===================== -->
+<div class="panel active" id="panel-resumen">
+  <div class="kpi-grid" id="kpi-resumen"></div>
+  <div class="two-col mb1">
     <div class="card">
-      <div class="card-title">Evolución de Unidades Vendidas (2021–2026)</div>
-      <div class="chart-wrap"><canvas id="chartAnual"></canvas></div>
+      <div class="card-title"><span>▮</span>Venta Total por Año (Unidades)</div>
+      <div class="chart-wrap"><canvas id="chartVentaAnual"></canvas></div>
     </div>
     <div class="card">
-      <div class="card-title">Variación % Año vs. Año</div>
+      <div class="card-title"><span>▮</span>Variación % Año vs. Año</div>
       <div class="chart-wrap"><canvas id="chartVarAnual"></canvas></div>
     </div>
   </div>
-
+  <div class="full-card mb1">
+    <div class="card-title"><span>▮</span>Variación % por Categoría 2021–2025</div>
+    <div class="chart-wrap-lg"><canvas id="chartVar2125"></canvas></div>
+  </div>
   <div class="full-card">
-    <div class="card-title">Resumen Anual por Categoría</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>Categoría</th>
-          <th class="num">2021</th><th class="num">2022</th><th class="num">2023</th>
-          <th class="num">2024</th><th class="num">2025</th><th class="num">Var 24/25</th>
-          <th class="num">2026 Q1</th>
-        </tr></thead>
-        <tbody id="tblAnual"></tbody>
-      </table>
-    </div>
+    <div class="card-title"><span>▮</span>Ventas por Categoría y Año — Tabla Completa</div>
+    <div class="tbl-wrap"><table id="tblVentasAnio"></table></div>
   </div>
 </div>
 
-<div id="p2" class="panel">
-  <div class="section-header">Ranking de Unidades Vendidas por Categoría — 2025 vs 2024</div>
-  <div class="two-col">
+<!-- ===================== PANEL 2: RANKING ===================== -->
+<div class="panel" id="panel-ranking">
+  <div class="two-col mb1">
     <div class="card">
-      <div class="card-title">Ranking 2025 (unidades)</div>
-      <div class="rank-list" id="rankList2025"></div>
+      <div class="card-title"><span>▮</span>Ranking Unidades Vendidas 2025 vs 2024</div>
+      <div id="rankList2025" class="rank-list" style="margin-top:.5rem"></div>
     </div>
     <div class="card">
-      <div class="card-title">Comparativo 2024 vs 2025</div>
-      <div class="chart-wrap-lg"><canvas id="chartRanking"></canvas></div>
+      <div class="card-title"><span>▮</span>Top Categorías en los Últimos Años</div>
+      <div class="chart-wrap-lg"><canvas id="chartTopCat"></canvas></div>
     </div>
   </div>
   <div class="full-card">
-    <div class="card-title">Tabla detallada de variación 2024 vs 2025</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>#</th><th>Categoría</th>
-          <th class="num">2024</th><th class="num">2025</th>
-          <th class="num">Variación Und.</th><th class="num">Var %</th>
-          <th class="num">Part. 2025</th>
-        </tr></thead>
-        <tbody id="tblRanking"></tbody>
-      </table>
-    </div>
+    <div class="card-title"><span>▮</span>Ranking Detallado 2025 — Variación vs 2024</div>
+    <div class="tbl-wrap"><table id="tblRanking"></table></div>
   </div>
 </div>
 
-<div id="p3" class="panel">
-  <div class="section-header">Variación porcentual acumulada 2021 → 2025</div>
-  <div class="kpi-grid" id="kpiVar"></div>
-  <div class="two-col">
-    <div class="card">
-      <div class="card-title">Variación % 2021 vs 2025 por Categoría</div>
-      <div class="chart-wrap-lg"><canvas id="chartVar2125"></canvas></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Tendencia de Categorías Clave</div>
-      <div class="chart-wrap-lg"><canvas id="chartTendencia"></canvas></div>
-    </div>
+<!-- ===================== PANEL 3: DESGLOSE ===================== -->
+<div class="panel" id="panel-desglose">
+  <div class="filter-row">
+    <span class="filter-label">Categoría:</span>
+    <select id="selCategoria" onchange="renderDesglose()"></select>
+  </div>
+  <div class="full-card mb1">
+    <div class="card-title"><span>▮</span>Venta Mensual por SKU — Líneas</div>
+    <div class="chart-wrap-lg"><canvas id="chartLineSKU"></canvas></div>
+  </div>
+  <div class="full-card mb1">
+    <div class="card-title"><span>▮</span>Ventas x SKU 2025 — Detalle Mensual</div>
+    <div class="tbl-wrap"><table id="tblSKU2025"></table></div>
   </div>
   <div class="full-card">
-    <div class="card-title">Evolución anual — todas las categorías</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>Categoría</th>
-          <th class="num">2021</th><th class="num">2022</th><th class="num">2023</th>
-          <th class="num">2024</th><th class="num">2025</th>
-          <th class="num">Var 21→25</th><th class="num">CAGR</th>
-        </tr></thead>
-        <tbody id="tblVar2125"></tbody>
-      </table>
-    </div>
+    <div class="card-title"><span>▮</span>Ventas Totales de la Categoría por Año</div>
+    <div class="tbl-wrap"><table id="tblCatAnio"></table></div>
   </div>
 </div>
 
-<div id="p4" class="panel">
-  <div class="section-header">Top Categorías en los Últimos Años</div>
-  <div class="kpi-grid">
-    <div class="kpi kpi-red"><div class="k-label">Líder Absoluto</div><div class="k-val" style="font-size:1.1rem;line-height:1.3">Planchas de Ropa</div><div class="k-sub">17.001 und · 50.7% del total</div></div>
-    <div class="kpi"><div class="k-label">Segunda Categoría</div><div class="k-val" style="font-size:1rem;line-height:1.3">Licuadoras</div><div class="k-sub">6.404 und · 19.1% del total</div></div>
-    <div class="kpi"><div class="k-label">Mayor Crecim. 2025</div><div class="k-val" style="font-size:1rem;line-height:1.3">Ollas Eléctricas</div><div class="k-sub">+79.8% vs 2024</div><span class="k-badge up">▲ +79,8%</span></div>
-    <div class="kpi"><div class="k-label">Categoría Estable</div><div class="k-val" style="font-size:1rem;line-height:1.3">Freidoras</div><div class="k-sub">Crecimiento sostenido</div></div>
+<!-- ===================== PANEL 4: COBERTURA ===================== -->
+<div class="panel" id="panel-cobertura">
+  <div class="full-card mb1">
+    <div class="card-title"><span>▮</span>Cobertura de Clientes por Categoría 2021–2026</div>
+    <div class="tbl-wrap"><table id="tblCobertura"></table></div>
   </div>
-  <div class="full-card">
-    <div class="card-title">Top 5 Categorías por Año (unidades)</div>
-    <div class="chart-wrap-lg"><canvas id="chartTop5"></canvas></div>
-  </div>
-  <div class="two-col">
-    <div class="card">
-      <div class="card-title">Participación de mercado 2025</div>
-      <div class="chart-wrap"><canvas id="chartPie2025"></canvas></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Participación de mercado 2024</div>
-      <div class="chart-wrap"><canvas id="chartPie2024"></canvas></div>
-    </div>
+  <div class="card">
+    <div class="card-title"><span>▮</span>Evolución Cobertura — Top 5 Categorías</div>
+    <div class="chart-wrap-lg"><canvas id="chartCobertura"></canvas></div>
   </div>
 </div>
 
-<div id="p5" class="panel">
-  <div class="select-row">
-    <label>Categoría</label>
-    <select id="selCat" onchange="updateSkuPanel()"></select>
+<!-- ===================== PANEL 5: FORECAST ===================== -->
+<div class="panel" id="panel-forecast">
+  <div class="kpi-grid" id="kpi-forecast"></div>
+  <div class="full-card mb1">
+    <div class="card-title"><span>▮</span>Forecast 2026 por SKU — Con % de Crecimiento vs 2025</div>
+    <div class="tbl-wrap"><table id="tblForecast"></table></div>
   </div>
-  <div class="full-card">
-    <div class="card-title">Evolución mensual por SKU 2025</div>
-    <div class="chart-wrap-lg"><canvas id="chartSkuLines"></canvas></div>
-  </div>
-  <div class="full-card">
-    <div class="card-title">Ventas por SKU — 2025 (ordenado por total)</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>Cód.</th><th>Descripción</th>
-          <th class="num">Ene</th><th class="num">Feb</th><th class="num">Mar</th>
-          <th class="num">Abr</th><th class="num">May</th><th class="num">Jun</th>
-          <th class="num">Jul</th><th class="num">Ago</th><th class="num">Sep</th>
-          <th class="num">Oct</th><th class="num">Nov</th><th class="num">Dic</th>
-          <th class="num">Total</th><th class="num">Stock</th><th>Status</th>
-        </tr></thead>
-        <tbody id="tblSkuVentas"></tbody>
-      </table>
-    </div>
+  <div class="card">
+    <div class="card-title"><span>▮</span>Forecast 2026 por Categoría (Unidades)</div>
+    <div class="chart-wrap-lg"><canvas id="chartForecastCat"></canvas></div>
   </div>
 </div>
 
-<div id="p6" class="panel">
-  <div class="section-header">Ventas Totales de la Categoría por Año</div>
-  <div class="select-row">
-    <label>Categoría</label>
-    <select id="selCat6" onchange="updateCatAnio()"></select>
+<!-- ===================== PANEL 6: Q1 ANÁLISIS ===================== -->
+<div class="panel" id="panel-q1">
+  <div class="kpi-grid" id="kpi-q1"></div>
+  <div class="full-card mb1">
+    <div class="card-title"><span>▮</span>Análisis Q1 por Categoría — 2026 vs 2025 vs Mejor Q1 Histórico</div>
+    <div class="tbl-wrap"><table id="tblQ1"></table></div>
   </div>
-  <div class="full-card">
-    <div class="card-title">Evolución Histórica (Unidades)</div>
-    <div class="chart-wrap"><canvas id="chartCatAnio"></canvas></div>
-  </div>
-  <div class="full-card">
-    <div class="card-title">Total anual por categoría</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>Categoría</th>
-          <th class="num">2021</th><th class="num">2022</th><th class="num">2023</th>
-          <th class="num">2024</th><th class="num">2025</th><th class="num">2026 YTD</th>
-        </tr></thead>
-        <tbody id="tblCatAnio"></tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<div id="p7" class="panel">
-  <div class="section-header">Cobertura de Clientes por Categoría 2021–2026</div>
-  <div class="two-col">
-    <div class="card">
-      <div class="card-title">Evolución cobertura — categorías clave</div>
-      <div class="chart-wrap-lg"><canvas id="chartCob"></canvas></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Cobertura 2025 vs promedio histórico</div>
-      <div class="chart-wrap-lg"><canvas id="chartCobBar"></canvas></div>
-    </div>
-  </div>
-  <div class="full-card">
-    <div class="card-title">Tabla de cobertura de clientes (con promedios)</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>Categoría</th>
-          <th class="num">2021</th><th class="num">2022</th><th class="num">2023</th>
-          <th class="num">2024</th><th class="num">2025</th><th class="num">2026</th>
-          <th class="num">Promedio</th>
-        </tr></thead>
-        <tbody id="tblCobertura"></tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<div id="p8" class="panel">
-  <div class="section-header">Forecast de Ventas 2026 por SKU</div>
-  <div class="kpi-grid" id="kpiForecast"></div>
-  <div class="two-col">
-    <div class="card">
-      <div class="card-title">Forecast 2026 vs Ventas 2025 por Categoría</div>
-      <div class="chart-wrap-lg"><canvas id="chartForecastCat"></canvas></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Distribución mensual forecast 2026</div>
-      <div class="chart-wrap-lg"><canvas id="chartForecastMes"></canvas></div>
-    </div>
-  </div>
-  <div class="full-card">
-    <div class="card-title">Detalle Forecast 2026 por SKU (con totalizador y % vs 2025)</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>Categoría</th><th>Cód.</th><th>Descripción</th><th>Status</th>
-          <th class="num">Ene</th><th class="num">Feb</th><th class="num">Mar</th>
-          <th class="num">Abr</th><th class="num">May</th><th class="num">Jun</th>
-          <th class="num">Jul</th><th class="num">Ago</th><th class="num">Sep</th>
-          <th class="num">Oct</th><th class="num">Nov</th><th class="num">Dic</th>
-          <th class="num">Total</th><th class="num">Vta 2025</th><th class="num">% Crec.</th>
-        </tr></thead>
-        <tbody id="tblForecast"></tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<div id="p9" class="panel">
-  <div class="section-header">Análisis de Crecimiento Q1 2026 vs Q1 2025 y Mejor Q1 Histórico</div>
-  <div class="kpi-grid">
-    <div class="kpi"><div class="k-label">Q1 2026 Total</div><div class="k-val">9.728</div><div class="k-sub">Ene+Feb+Mar 2026</div></div>
-    <div class="kpi"><div class="k-label">Q1 2025 Total</div><div class="k-val">8.421</div><div class="k-sub">Ene+Feb+Mar 2025</div><span class="k-badge up">▲ +15,5% vs 2025</span></div>
-    <div class="kpi"><div class="k-label">Mejor Q1 Histórico</div><div class="k-val">2026</div><div class="k-sub">Q1 2026: 9.728 und</div></div>
-  </div>
-  <div class="full-card">
-    <div class="card-title">Evolución Q1 por año (Ene+Feb+Mar) — todas las categorías</div>
+  <div class="card">
+    <div class="card-title"><span>▮</span>Q1 por Año y Categoría — Evolución</div>
     <div class="chart-wrap-lg"><canvas id="chartQ1"></canvas></div>
   </div>
-  <div class="full-card">
-    <div class="card-title">Q1 por categoría — comparativo</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>Categoría</th>
-          <th class="num">Q1 2021</th><th class="num">Q1 2022</th><th class="num">Q1 2023</th>
-          <th class="num">Q1 2024</th><th class="num">Q1 2025</th><th class="num">Q1 2026</th>
-          <th class="num">Mejor Q1</th><th class="num">Mejor Año</th>
-          <th class="num">26 vs 25</th><th class="num">26 vs Mejor</th>
-        </tr></thead>
-        <tbody id="tblQ1"></tbody>
-      </table>
-    </div>
-  </div>
 </div>
 
-<div id="p10" class="panel">
-  <div class="section-header">Análisis de Quiebres: Forecast vs Stock vs Histórico de Ventas</div>
-  <div class="kpi-grid">
-    <div class="kpi kpi-red"><div class="k-label">SKUs con Riesgo Alto</div><div class="k-val" style="color:var(--red)" id="valRiesgoAlto">0</div><div class="k-sub">Stock &lt; 2 meses demand.</div></div>
-    <div class="kpi"><div class="k-label">SKUs con Riesgo Medio</div><div class="k-val" style="color:var(--amber)" id="valRiesgoMedio">0</div><div class="k-sub">Stock entre 2-3 meses</div></div>
-    <div class="kpi"><div class="k-label">SKUs con Stock Holgado</div><div class="k-val" style="color:var(--green)" id="valRiesgoOk">0</div><div class="k-sub">Stock &gt; 3 meses demand.</div></div>
-  </div>
+<!-- ===================== PANEL 7: QUIEBRES ===================== -->
+<div class="panel" id="panel-quiebres">
+  <div class="kpi-grid" id="kpi-quiebres"></div>
   <div class="full-card">
-    <div class="card-title">Análisis de Quiebres por SKU (Forecast 2026 vs Stock Disponible)</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>Categoría</th><th>Cód.</th><th>Descripción</th>
-          <th class="num">Stock</th>
-          <th class="num">Fcst 2026</th>
-          <th class="num">Vta Mens. Prom. 2025</th>
-          <th class="num">Meses Cobert.</th>
-          <th class="num">Brecha</th>
-          <th>Riesgo</th>
-        </tr></thead>
-        <tbody id="tblQuiebres"></tbody>
-      </table>
-    </div>
-  </div>
-  <div class="full-card">
-    <div class="card-title">Cobertura de Stock vs Forecast 2026</div>
-    <div class="chart-wrap-lg"><canvas id="chartQuiebres"></canvas></div>
+    <div class="card-title"><span>▮</span>Análisis de Quiebres — Forecast vs Stock vs Historial de Ventas</div>
+    <div class="tbl-wrap"><table id="tblQuiebres"></table></div>
   </div>
 </div>
 
 </main>
 
-<footer>
-  <span>Remington · Dashboard Comercial 2026 · Fuente: Base análisis Abril 2026</span>
-  <span>Generado: Abril 2026</span>
-</footer>
-
 <script>
-// ============================================================
-// DATA (Mapped to Remington / Provided B+D Data)
-// ============================================================
+// =============== DATA ===============
 const YEARS = ['2021','2022','2023','2024','2025'];
-const CATS_ALL = ['ASPIRADORAS','BATIDORAS','CAFETERAS','FREIDORAS','HORNOS DE MESA','JARRAS ELECTRICAS','JUGUERAS','LICUADORAS','MIXERS','OLLAS ELECTRICAS','PLANCHAS DE ROPA','PROCESADORES','SANDWICHERAS','TOSTADORAS'];
+const MONTHS = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+const CATS = ['ASPIRADORAS','BATIDORAS','CAFETERAS','FREIDORAS','HORNOS DE MESA','JARRAS ELECTRICAS','JUGUERAS','LICUADORAS','MIXERS','OLLAS ELECTRICAS','PLANCHAS DE ROPA','PROCESADORES','SANDWICHERAS','TOSTADORAS'];
 
-const VENTAS_ANUAL = {
-  'ASPIRADORAS':       [329,518,603,625,729],
-  'BATIDORAS':         [1866,1091,1100,1359,754],
-  'CAFETERAS':         [254,1094,1007,2396,1484],
-  'FREIDORAS':         [34,312,1139,1372,1298],
-  'HORNOS DE MESA':    [542,202,562,705,1249],
-  'JARRAS ELECTRICAS': [189,741,940,932,603],
-  'JUGUERAS':          [893,389,483,353,214],
-  'LICUADORAS':        [3257,2283,3645,6471,6404],
-  'MIXERS':            [679,670,392,722,515],
-  'OLLAS ELECTRICAS':  [213,386,582,705,1268],
-  'PLANCHAS DE ROPA':  [9090,11405,14240,16399,17001],
-  'PROCESADORES':      [867,621,0,493,323],
-  'SANDWICHERAS':      [701,363,645,987,1663],
-  'TOSTADORAS':        [1,217,446,1137,3]
+const ventasAño = {
+  'ASPIRADORAS':    {2021:0,   2022:0,    2023:0,    2024:195,  2025:194,  2026:97},
+  'BATIDORAS':      {2021:1866,2022:1091, 2023:1100, 2024:1359, 2025:754,  2026:0},
+  'CAFETERAS':      {2021:254, 2022:1094, 2023:1007, 2024:2396, 2025:1484, 2026:639},
+  'FREIDORAS':      {2021:34,  2022:312,  2023:1139, 2024:1372, 2025:1298, 2026:107},
+  'HORNOS DE MESA': {2021:542, 2022:202,  2023:562,  2024:705,  2025:1249, 2026:955},
+  'JARRAS ELECTRICAS':{2021:189,2022:741, 2023:940,  2024:932,  2025:603,  2026:69},
+  'JUGUERAS':       {2021:893, 2022:389,  2023:483,  2024:353,  2025:214,  2026:174},
+  'LICUADORAS':     {2021:3257,2022:2283, 2023:3645, 2024:6471, 2025:6404, 2026:1291},
+  'MIXERS':         {2021:679, 2022:670,  2023:392,  2024:722,  2025:515,  2026:0},
+  'OLLAS ELECTRICAS':{2021:213,2022:386,  2023:582,  2024:705,  2025:1268, 2026:55},
+  'PLANCHAS DE ROPA':{2021:9090,2022:11405,2023:14240,2024:16399,2025:17001,2026:5733},
+  'PROCESADORES':   {2021:867, 2022:621,  2023:0,    2024:493,  2025:323,  2026:181},
+  'SANDWICHERAS':   {2021:701, 2022:363,  2023:645,  2024:987,  2025:1663, 2026:321},
+  'TOSTADORAS':     {2021:1,   2022:217,  2023:446,  2024:1137, 2025:3,    2026:0}
 };
-const TOTALES_ANUAL = [19058, 20293, 25784, 34656, 33508];
+const totalesAño = {2021:18729,2022:19775,2023:25181,2024:34031,2025:32779,2026:9519};
 
-const SKU_DATA = {
-  'ASPIRADORAS':[
-    {cod:'BD63',desc:'ASPIRADORA VCBD603CL FILTRO HEPA LAVABLE 3L',m:[20,7,13,9,26,27,20,6,5,15,28,18],stock:562,status:'N'},
-    {cod:'BD64',desc:'ASPIRADORA VCBD8530-CL FILTRO HEPA 2,5L',m:[27,22,29,22,3,0,0,0,0,0,0,0],stock:109,status:'N'},
-    {cod:'BD83',desc:'ASPIRADORA DE MANO INALAMBRICA HLVA325J10B2C',m:[22,19,12,39,43,69,62,43,25,41,56,6],stock:5,status:'N'}
-  ],
-  'LICUADORAS':[
-    {cod:'BD61',desc:'LICUADORA DURAPRO BLANCA BLBD210PWCL 1.5 LTS',m:[461,294,429,264,177,349,86,84,427,314,249,231],stock:4340,status:'N'},
-    {cod:'BD84',desc:'LICUADORA ICE CRUSH ROJA BL08761RDCL',m:[3,41,65,54,52,80,43,122,78,120,122,122],stock:885,status:'N'},
-    {cod:'BD85',desc:'LICUADORA DIGITAL SILVER BL09761MDCL',m:[2,19,45,18,88,45,72,91,35,129,73,71],stock:655,status:'N'}
-  ],
-  'PLANCHAS DE ROPA':[
-    {cod:'BD26',desc:'PLANCHA SECA F54PE ALUMINIO 1100W',m:[776,729,625,931,816,563,520,674,546,592,736,1090],stock:6211,status:'S'},
-    {cod:'BD31',desc:'PLANCHA VAPOR IRBD100CL BASE NONSTICK 1100W',m:[322,173,361,879,493,585,384,311,325,333,232,15],stock:2755,status:'N'},
-    {cod:'BD75',desc:'PLANCHA VAPOR IRBD204CL TRUE GLIDE 1500W',m:[217,115,387,386,228,311,221,225,357,309,411,301],stock:1612,status:'N'}
-  ],
-  'FREIDORAS':[
-    {cod:'BD86',desc:'FREIDORA DIGITAL PURIFRY 5.5 LTS AFBD62',m:[16,22,71,53,89,97,68,26,17,57,34,22],stock:1582,status:'N'},
-    {cod:'BD89',desc:'FREIDORA DIGITAL PURIFRY 4.2LTS AFBD421BDCL',m:[1,16,63,52,91,54,28,11,12,31,25,21],stock:334,status:'N'}
-  ],
-  'HORNOS DE MESA':[
-    {cod:'BD30',desc:'HORNO ELECTRICO CTO300CL CONVECCION INOX 52L',m:[66,69,105,117,181,100,162,109,40,51,105,143],stock:896,status:'N'}
-  ],
-  'CAFETERAS':[
-    {cod:'BD72',desc:'CAFETERA CM0755SCL 4 EN 1 DE 5 TAZAS',m:[4,94,47,197,220,227,155,38,0,0,0,11],stock:747,status:'N'},
-    {cod:'BD76',desc:'CAFETERA CM0916BCL 12-CUP Vortex Technology',m:[2,0,0,0,0,0,17,133,105,56,88,102],stock:2374,status:'N'}
-  ]
+// SKU 2025 data
+const sku2025 = [
+  {cat:'ASPIRADORAS',cod:'BD63',desc:'ASPIRADORA BLACK AND DECKER VCBD603CL FILTRO HEPA 3L 1800W',stock:562,meses:[20,7,13,9,26,27,20,6,5,15,28,18]},
+  {cat:'ASPIRADORAS',cod:'BD64',desc:'ASPIRADORA B+D VCBD8530-CL FILTRO HEPA 2.5L 2000W',stock:109,meses:[27,22,29,22,3,0,0,0,0,0,0,0]},
+  {cat:'ASPIRADORAS',cod:'BD83',desc:'ASPIRADORA DE MANO BLACK AND DECKER INALAMBRICA',stock:5,meses:[22,19,12,39,43,69,62,43,25,41,56,6]},
+  {cat:'BATIDORAS',cod:'BD35',desc:'BATIDORA MANUAL MX1500WCL 5V 175W',stock:2,meses:[82,44,19,9,0,0,0,0,0,1,0,0]},
+  {cat:'BATIDORAS',cod:'BD44',desc:'BATIDORA MX900CL BOL VID 3L 5VEL 250W',stock:2,meses:[50,43,32,60,103,41,69,76,59,44,22,2]},
+  {cat:'CAFETERAS',cod:'BD72',desc:'CAFETERA CM0755SCL 4 EN 1 5 TAZAS',stock:747,meses:[4,94,47,197,220,227,155,38,0,0,0,11]},
+  {cat:'CAFETERAS',cod:'BD76',desc:'CAFETERA CM0916BCL 12-CUP Vortex Technology',stock:2374,meses:[2,0,0,0,0,0,17,133,105,56,88,102]},
+  {cat:'FREIDORAS',cod:'BD80',desc:'FREIDORA AIR FRYER HFD5055-AR 5.7L DIGITAL',stock:5,meses:[116,138,26,38,0,2,0,1,0,1,0,0]},
+  {cat:'FREIDORAS',cod:'BD86',desc:'FREIDORA DIGITAL PURIFRY 5.5 LTS AFBD62',stock:1582,meses:[16,22,71,53,89,97,68,26,17,57,34,22]},
+  {cat:'FREIDORAS',cod:'BD89',desc:'FREIDORA DIGITAL PURIFRY 4.2LTS AFBD421',stock:334,meses:[1,16,63,52,91,54,28,11,12,31,25,21]},
+  {cat:'HORNOS DE MESA',cod:'BD30',desc:'HORNO ELECTRICO CTO300CL CONVECCION 52LTS 2200W',stock:896,meses:[66,69,105,117,181,100,162,109,40,51,105,143]},
+  {cat:'HORNOS DE MESA',cod:'BD57',desc:'HORNO CONVECCION TO3210SSD-CL 24L 1500W',stock:1,meses:[1,0,0,0,0,0,0,0,0,0,0,0]},
+  {cat:'JARRAS ELECTRICAS',cod:'BD53',desc:'HERVIDORA KE21441-CL 1.7L 2000W',stock:7,meses:[0,0,1,0,0,0,0,0,0,0,0,0]},
+  {cat:'JARRAS ELECTRICAS',cod:'BD55',desc:'HERVIDORA KE22591CL 1.7L 2400W',stock:4,meses:[56,55,28,39,74,90,44,60,48,54,20,33]},
+  {cat:'JARRAS ELECTRICAS',cod:'BD67',desc:'HERVIDORA JKC001BDCL PLATA 2000W 1.7LTS',stock:0,meses:[0,0,0,0,0,1,0,0,0,0,0,0]},
+  {cat:'JUGUERAS',cod:'BD65',desc:'EXPRIMIDORA CJ650W-CL AUTOREVERSE 20W',stock:76,meses:[116,32,17,20,31,0,0,0,0,0,0,0]},
+  {cat:'LICUADORAS',cod:'BD27',desc:'LICUADORA BLBD10PW-CL 10V JAR ACRIL 350W',stock:0,meses:[0,0,0,0,0,0,0,0,1,0,0,0]},
+  {cat:'LICUADORAS',cod:'BD52',desc:'LICUADORA DURAPRO TURQUESA BLBD210GT 10 VEL',stock:3,meses:[191,70,0,0,0,0,0,0,0,0,0,0]},
+  {cat:'LICUADORAS',cod:'BD54',desc:'LICUADORA PERSONAL FUSION BLADE PB22340CL 250W',stock:480,meses:[86,100,74,57,65,33,62,66,61,63,36,37]},
+  {cat:'LICUADORAS',cod:'BD61',desc:'LICUADORA DURAPRO BLANCA BLBD210PWCL 1.5LTS',stock:4340,meses:[461,294,429,264,177,349,86,84,427,314,249,231]},
+  {cat:'LICUADORAS',cod:'BD68',desc:'LICUADORA DURAPRO ROJA BLBD210GR 550W',stock:1,meses:[5,0,0,0,0,0,0,0,0,0,1,0]},
+  {cat:'LICUADORAS',cod:'BD69',desc:'LICUADORA PULVERIX INOX BL1840MS 3 VEL 700W',stock:0,meses:[0,0,0,0,1,0,0,0,0,0,0,0]},
+  {cat:'LICUADORAS',cod:'BD70',desc:'LICUADORA PULVERIX INOX BL1140MS 12 VEL',stock:0,meses:[52,62,43,4,0,7,0,1,0,0,0,0]},
+  {cat:'LICUADORAS',cod:'BD79',desc:'LICUADORA POWER CRUSH BL1300DG 1.5LTS',stock:82,meses:[53,39,43,18,40,1,0,0,0,25,33,30]},
+  {cat:'LICUADORAS',cod:'BD84',desc:'LICUADORA ICE CRUSH ROJA BL08761RDCL',stock:885,meses:[3,41,65,54,52,80,43,122,78,120,122,122]},
+  {cat:'LICUADORAS',cod:'BD85',desc:'LICUADORA DIGITAL SILVER BL09761MDCL',stock:655,meses:[2,19,45,18,88,45,72,91,35,129,73,71]},
+  {cat:'MIXERS',cod:'BD39',desc:'MIXER HB2400W-CL 2VEL VASO 700ML 200W',stock:1,meses:[108,96,15,4,0,0,0,0,0,0,0,0]},
+  {cat:'MIXERS',cod:'BD59',desc:'MIXER DE INMERSION HB24710CL 500ML 700W',stock:8,meses:[25,34,39,40,43,47,19,20,15,11,0,0]},
+  {cat:'OLLAS ELECTRICAS',cod:'BD17',desc:'PARRILLA ELECTRICA IG201CL ANTIAD 1200W',stock:1,meses:[44,23,11,20,29,19,35,12,9,51,67,8]},
+  {cat:'OLLAS ELECTRICAS',cod:'BD37',desc:'OLLA ELECTRICA RC5225CL ANTIAD 5LTS',stock:2,meses:[39,41,54,18,74,32,107,224,104,2,0,0]},
+  {cat:'OLLAS ELECTRICAS',cod:'BD88',desc:'SARTEN ELECTRICA SK1212BAR',stock:201,meses:[1,11,21,8,35,38,20,33,23,26,12,18]},
+  {cat:'PLANCHAS DE ROPA',cod:'BD26',desc:'PLANCHA SECA F54PE ALUMINIO 1100W',stock:6211,meses:[776,729,625,931,816,563,520,674,546,592,736,1090]},
+  {cat:'PLANCHAS DE ROPA',cod:'BD31',desc:'PLANCHA VAPOR IRBD100CL NONSTICK 1100W',stock:2755,meses:[322,173,361,879,493,585,384,311,325,333,232,15]},
+  {cat:'PLANCHAS DE ROPA',cod:'BD74',desc:'PLANCHA VAPOR IR23960-CL CERAMIC 2400W',stock:548,meses:[182,142,140,59,0,0,0,0,0,0,0,2]},
+  {cat:'PLANCHAS DE ROPA',cod:'BD75',desc:'PLANCHA VAPOR IRBD204CL TRUE GLIDE 1500W',stock:1612,meses:[217,115,387,386,228,311,221,225,357,309,411,301]},
+  {cat:'PROCESADORES',cod:'BD66',desc:'PROCESADOR FP4200B-CL NEGRO 450W',stock:3,meses:[7,0,0,0,0,0,0,0,0,0,0,0]},
+  {cat:'PROCESADORES',cod:'BD90',desc:'PROCESADOR FP43420BDCL',stock:639,meses:[0,0,0,0,0,0,26,86,63,61,35,47]},
+  {cat:'SANDWICHERAS',cod:'BD56',desc:'SANDWICHERA GR2976CL ANTIAD 910W',stock:2,meses:[55,46,33,32,121,92,55,77,44,94,65,32]},
+  {cat:'SANDWICHERAS',cod:'BD73',desc:'SANDWICHERA WM2000SCL 3 EN 1 700W',stock:1,meses:[19,46,19,43,2,7,1,2,1,1,0,0]},
+  {cat:'SANDWICHERAS',cod:'BD77',desc:'SANDWICHERA SM24520AR PLACA TRIANGULAR',stock:142,meses:[88,14,24,38,12,12,21,30,5,22,12,11]},
+  {cat:'SANDWICHERAS',cod:'BD87',desc:'SANDWICHERA SM24530CL PLACA TRIANGULAR',stock:315,meses:[0,15,44,49,106,63,36,50,22,25,35,21]},
+  {cat:'SANDWICHERAS',cod:'BD91',desc:'SANDWICHERA SM602F1WDAR BD',stock:135,meses:[0,0,0,0,0,0,0,0,0,2,8,11]},
+  {cat:'TOSTADORAS',cod:'BD34',desc:'TOSTADORA TR200BD-CL 2 RAN 6 NIV 750W',stock:0,meses:[3,0,0,0,0,0,0,1,0,0,0,0]}
+];
+
+// Compute totals per SKU 2025
+sku2025.forEach(s=>{s.total=s.meses.reduce((a,b)=>a+b,0)});
+
+// SKU ventas 2024 (from Venta x SKU x Año cols 39-51)
+const sku2024map = {
+  'BD63':127,'BD64':195,'BD83':302,
+  'BD35':154,'BD44':601,
+  'BD72':985,'BD76':503,
+  'BD80':321,'BD86':572,'BD89':405,
+  'BD30':1249,'BD57':1,
+  'BD53':5,'BD55':601,'BD67':1,
+  'BD65':214,
+  'BD27':1,'BD52':261,'BD54':640,'BD61':2437,'BD68':9,'BD69':3,'BD70':169,'BD79':282,'BD84':902,'BD85':588,
+  'BD39':303,'BD59':293,
+  'BD17':328,'BD37':695,'BD88':246,
+  'BD26':7598,'BD31':4413,'BD74':523,'BD75':3865,
+  'BD66':5,'BD90':488,
+  'BD56':698,'BD73':141,'BD77':289,'BD87':0,'BD91':0,
+  'BD34':1137
 };
 
-const FORECAST_DATA = [
-  {cat:'ASPIRADORAS',cod:'BD63',desc:'ASPIRADORA VCBD603CL',status:'REGULAR',m:[15,10,15,10,30,30,20,10,10,10,20,15],vta2025:194},
-  {cat:'ASPIRADORAS',cod:'BD64',desc:'ASPIRADORA VCBD8530-CL',status:'REGULAR',m:[28,25,30,23,25,18,22,28,20,25,30,30],vta2025:103},
-  {cat:'ASPIRADORAS',cod:'BD83',desc:'ASPIRADORA DE MANO HLVA325J10B2C',status:'REGULAR',m:[20,20,15,40,45,70,65,45,30,25,45,40],vta2025:437},
-  {cat:'LICUADORAS',cod:'BD61',desc:'LICUADORA DURAPRO BLANCA',status:'REGULAR',m:[485,600,600,412,185,250,220,280,320,360,480,400],vta2025:3365},
-  {cat:'LICUADORAS',cod:'BD84',desc:'LICUADORA ICE CRUSH ROJA',status:'REGULAR',m:[35,43,68,57,55,84,87,87,82,110,150,150],vta2025:902},
-  {cat:'LICUADORAS',cod:'BD85',desc:'LICUADORA DIGITAL SILVER',status:'REGULAR',m:[25,20,47,19,92,47,76,96,37,45,75,90],vta2025:688},
-  {cat:'PLANCHAS DE ROPA',cod:'BD26',desc:'PLANCHA SECA F54PE',status:'REGULAR',m:[815,900,900,978,857,591,546,708,573,610,668,985],vta2025:8598},
-  {cat:'PLANCHAS DE ROPA',cod:'BD31',desc:'PLANCHA VAPOR IRBD100CL',status:'REGULAR',m:[338,300,300,923,518,614,403,327,341,355,415,577],vta2025:4419},
-  {cat:'PLANCHAS DE ROPA',cod:'BD75',desc:'PLANCHA VAPOR IRBD204CL',status:'REGULAR',m:[228,122,122,405,239,327,232,236,375,218,276,384],vta2025:3467},
-  {cat:'FREIDORAS',cod:'BD86',desc:'FREIDORA DIGITAL PURIFRY 5.5 LTS',status:'REGULAR',m:[25,25,70,100,115,90,50,35,25,30,55,40],vta2025:572},
-  {cat:'HORNOS DE MESA',cod:'BD30',desc:'HORNO ELECTRICO CTO300CL',status:'REGULAR',m:[70,70,110,125,190,110,170,115,130,100,170,130],vta2025:1148},
-  {cat:'CAFETERAS',cod:'BD72',desc:'CAFETERA CM0755SCL 4 EN 1',status:'REGULAR',m:[60,50,100,200,220,240,200,100,80,60,120,100],vta2025:993}
+// Cobertura
+const cobertura = [
+  {cat:'ASPIRADORAS',   y2021:95, y2022:104,y2023:90, y2024:118,y2025:139,y2026:51},
+  {cat:'BATIDORAS',     y2021:247,y2022:181,y2023:143,y2024:172,y2025:133,y2026:null},
+  {cat:'CAFETERAS',     y2021:62, y2022:137,y2023:99, y2024:188,y2025:242,y2026:97},
+  {cat:'FREIDORAS',     y2021:5,  y2022:42, y2023:138,y2024:177,y2025:186,y2026:30},
+  {cat:'HORNOS DE MESA',y2021:93, y2022:40, y2023:69, y2024:88, y2025:185,y2026:127},
+  {cat:'JARRAS ELECTRICAS',y2021:47,y2022:82,y2023:91,y2024:118,y2025:101,y2026:20},
+  {cat:'JUGUERAS',      y2021:158,y2022:53, y2023:52, y2024:72, y2025:54, y2026:37},
+  {cat:'LICUADORAS',    y2021:269,y2022:258,y2023:261,y2024:441,y2025:536,y2026:166},
+  {cat:'MIXERS',        y2021:115,y2022:97, y2023:59, y2024:118,y2025:132,y2026:4},
+  {cat:'OLLAS ELECTRICAS',y2021:56,y2022:109,y2023:88,y2024:135,y2025:297,y2026:26},
+  {cat:'PLANCHAS DE ROPA',y2021:473,y2022:474,y2023:465,y2024:550,y2025:649,y2026:273},
+  {cat:'PROCESADORES',  y2021:158,y2022:97, y2023:3,  y2024:119,y2025:97, y2026:64},
+  {cat:'SANDWICHERAS',  y2021:130,y2022:73, y2023:82, y2024:142,y2025:234,y2026:68},
+  {cat:'TOSTADORAS',    y2021:4,  y2022:30, y2023:53, y2024:143,y2025:6,  y2026:null}
 ];
 
-const COBERTURA = [
-  {cat:'ASPIRADORAS',vals:[95, 104, 90, 118, 139, 51]},
-  {cat:'BATIDORAS',vals:[247, 181, 143, 172, 133, 0]},
-  {cat:'CAFETERAS',vals:[62, 137, 99, 188, 242, 97]},
-  {cat:'FREIDORAS',vals:[5, 42, 138, 177, 186, 30]},
-  {cat:'HORNOS DE MESA',vals:[93, 40, 69, 88, 185, 127]},
-  {cat:'JARRAS ELECTRICAS',vals:[47, 82, 91, 118, 101, 20]},
-  {cat:'JUGUERAS',vals:[158, 53, 52, 72, 54, 37]},
-  {cat:'LICUADORAS',vals:[269, 258, 261, 441, 536, 166]},
-  {cat:'MIXERS',vals:[115, 97, 59, 118, 132, 4]},
-  {cat:'OLLAS ELECTRICAS',vals:[56, 109, 88, 135, 297, 26]},
-  {cat:'PLANCHAS DE ROPA',vals:[473, 474, 465, 550, 649, 273]},
-  {cat:'PROCESADORES',vals:[158, 97, 3, 119, 97, 64]},
-  {cat:'SANDWICHERAS',vals:[130, 73, 82, 142, 234, 68]}
+// Forecast 2026
+const forecast2026 = [
+  {cat:'BATIDORAS',   cod:'BD35',desc:'BATIDORA MANUAL MX1500WCL 175W',        status:'REGULAR',meses:[0,0,0,90,96,50,45,100,105,80,110,130]},
+  {cat:'BATIDORAS',   cod:'BD44',desc:'BATIDORA MX900CL BOL VID 250W',         status:'REGULAR',meses:[0,0,0,0,0,0,0,0,0,0,0,0]},
+  {cat:'CAFETERAS',   cod:'BD72',desc:'CAFETERA CM0755SCL 4 EN 1',             status:'REGULAR',meses:[60,50,100,200,220,240,200,100,80,60,120,100]},
+  {cat:'CAFETERAS',   cod:'BD76',desc:'CAFETERA CM0916BCL Vortex Technology',  status:'REGULAR',meses:[60,70,90,160,250,220,380,170,110,70,90,80]},
+  {cat:'FREIDORAS',   cod:'BD80',desc:'FREIDORA AIR FRYER HFD5055 5.7L',      status:'REGULAR',meses:[0,0,0,0,0,0,0,0,0,0,0,0]},
+  {cat:'FREIDORAS',   cod:'BD86',desc:'FREIDORA DIGITAL PURIFRY 5.5LTS',      status:'REGULAR',meses:[25,25,70,100,115,90,50,35,25,30,55,40]},
+  {cat:'FREIDORAS',   cod:'BD89',desc:'FREIDORA DIGITAL PURIFRY 4.2LTS',      status:'REGULAR',meses:[15,20,40,60,90,50,25,20,15,15,40,30]},
+  {cat:'JARRAS ELECTRICAS',cod:'BD53',desc:'HERVIDORA KE21441-CL 1.7L',       status:'REGULAR',meses:[0,0,0,70,100,0,0,0,0,0,0,0]},
+  {cat:'JARRAS ELECTRICAS',cod:'BD55',desc:'HERVIDORA KE22591CL 1.7L 2400W',  status:'REGULAR',meses:[0,0,0,40,80,80,41,0,0,0,0,0]},
+  {cat:'JARRAS ELECTRICAS',cod:'BD67',desc:'HERVIDORA JKC001BDCL PLATA',      status:'REGULAR',meses:[0,0,0,0,0,0,0,0,0,0,0,0]},
+  {cat:'TOSTADORAS',  cod:'BD34',desc:'TOSTADORA TR200BD-CL 2 RAN 750W',      status:'REGULAR',meses:[0,0,0,110,231,120,150,130,110,90,150,150]},
+  {cat:'ASPIRADORAS', cod:'BD63',desc:'ASPIRADORA VCBD603CL HEPA 3L 1800W',   status:'REGULAR',meses:[15,10,15,10,30,30,20,10,10,10,20,15]},
+  {cat:'ASPIRADORAS', cod:'BD64',desc:'ASPIRADORA VCBD8530 HEPA 2.5L 2000W',  status:'REGULAR',meses:[28,25,30,23,25,18,22,28,20,25,30,30]},
+  {cat:'ASPIRADORAS', cod:'BD83',desc:'ASPIRADORA DE MANO INALAMBRICA',        status:'REGULAR',meses:[20,20,15,40,45,70,65,45,30,25,45,40]},
+  {cat:'HORNOS DE MESA',cod:'BD30',desc:'HORNO ELECTRICO CTO300CL 52LTS',    status:'REGULAR',meses:[70,70,110,125,190,110,170,115,130,100,170,130]},
+  {cat:'HORNOS DE MESA',cod:'BD57',desc:'HORNO CONVECCION TO3210SSD 24L',    status:'REGULAR',meses:[0,0,0,0,0,0,0,0,0,0,0,0]},
+  {cat:'JUGUERAS',    cod:'BD65',desc:'EXPRIMIDORA CJ650W-CL 20W',            status:'REGULAR',meses:[25,20,20,40,20,20,35,25,35,20,40,40]},
+  {cat:'LICUADORAS',  cod:'BD27',desc:'LICUADORA BLBD10PW-CL 350W',           status:'REGULAR',meses:[0,0,0,0,0,0,0,0,0,0,0,0]},
+  {cat:'LICUADORAS',  cod:'BD52',desc:'LICUADORA DURAPRO TURQUESA',           status:'REGULAR',meses:[0,0,0,0,0,0,0,0,0,0,0,0]},
+  {cat:'LICUADORAS',  cod:'BD54',desc:'LICUADORA PERSONAL FUSION BLADE 250W', status:'REGULAR',meses:[90,105,80,60,65,35,65,70,65,70,100,65]},
+  {cat:'LICUADORAS',  cod:'BD61',desc:'LICUADORA DURAPRO BLANCA 1.5LTS',      status:'REGULAR',meses:[485,600,600,412,185,250,220,280,320,360,480,400]},
+  {cat:'LICUADORAS',  cod:'BD68',desc:'LICUADORA DURAPRO ROJA 550W',          status:'REGULAR',meses:[0,0,0,0,0,0,0,0,0,0,0,0]},
+  {cat:'LICUADORAS',  cod:'BD70',desc:'LICUADORA PULVERIX INOX 12 VEL',       status:'REGULAR',meses:[0,0,0,22,81,34,50,65,59,43,62,51]},
+  {cat:'LICUADORAS',  cod:'BD79',desc:'LICUADORA POWER CRUSH BL1300DG',       status:'REGULAR',meses:[55,40,45,30,0,0,0,0,0,0,0,0]},
+  {cat:'LICUADORAS',  cod:'BD92',desc:'LICUADORA BL1516-3MDCL',               status:'REGULAR',meses:[0,0,0,0,40,12,15,15,25,50,35,54]},
+  {cat:'LICUADORAS',  cod:'BD84',desc:'LICUADORA ICE CRUSH ROJA BL08761RDCL', status:'REGULAR',meses:[35,43,68,57,55,84,87,87,82,110,150,150]},
+  {cat:'LICUADORAS',  cod:'BD85',desc:'LICUADORA DIGITAL SILVER BL09761MDCL', status:'REGULAR',meses:[25,20,47,19,92,47,76,96,37,45,75,90]},
+  {cat:'MIXERS',      cod:'BD39',desc:'MIXER HB2400W-CL 200W',                status:'REGULAR',meses:[0,0,0,35,60,77,56,35,56,62,57,113]},
+  {cat:'MIXERS',      cod:'BD59',desc:'MIXER INMERSION HB24710CL 700W',       status:'REGULAR',meses:[0,0,0,40,43,47,29,34,15,39,38,45]},
+  {cat:'OLLAS ELECTRICAS',cod:'BD17',desc:'PARRILLA ELECTRICA IG201CL 1200W', status:'REGULAR',meses:[30,20,11,0,0,0,0,0,0,0,0,0]},
+  {cat:'OLLAS ELECTRICAS',cod:'BD37',desc:'OLLA ELECTRICA RC5225CL 5LTS',     status:'REGULAR',meses:[0,0,0,0,50,25,30,32,25,30,45,50]},
+  {cat:'OLLAS ELECTRICAS',cod:'BD88',desc:'SARTEN ELECTRICA SK1212BAR',       status:'REGULAR',meses:[15,18,22,30,37,40,20,35,24,28,35,30]},
+  {cat:'PLANCHAS DE ROPA',cod:'BD26',desc:'PLANCHA SECA F54PE 1100W',         status:'REGULAR',meses:[815,900,900,978,857,591,546,708,573,610,668,985]},
+  {cat:'PLANCHAS DE ROPA',cod:'BD31',desc:'PLANCHA VAPOR IRBD100CL 1100W',    status:'REGULAR',meses:[338,300,300,923,518,614,403,327,341,355,415,577]},
+  {cat:'PLANCHAS DE ROPA',cod:'BD74',desc:'PLANCHA VAPOR IR23960 CERAMIC',    status:'REGULAR',meses:[151,260,260,122,162,130,131,114,111,134,187,329]},
+  {cat:'PLANCHAS DE ROPA',cod:'BD75',desc:'PLANCHA VAPOR IRBD204CL TRUE GLIDE',status:'REGULAR',meses:[228,122,122,405,239,327,232,236,375,218,276,384]},
+  {cat:'PROCESADORES', cod:'BD66',desc:'PROCESADOR FP4200B-CL 450W',          status:'REGULAR',meses:[0,0,0,0,0,0,0,0,0,0,0,0]},
+  {cat:'PROCESADORES', cod:'BD90',desc:'PROCESADOR FP43420BDCL',              status:'REGULAR',meses:[60,80,70,100,100,50,100,50,100,50,100,90]},
+  {cat:'SANDWICHERAS', cod:'BD56',desc:'SANDWICHERA GR2976CL 910W',           status:'REGULAR',meses:[58,48,35,45,127,97,58,81,46,55,65,70]},
+  {cat:'SANDWICHERAS', cod:'BD73',desc:'SANDWICHERA WM2000SCL 700W',          status:'REGULAR',meses:[0,0,0,0,0,0,0,0,0,0,0,0]},
+  {cat:'SANDWICHERAS', cod:'BD77',desc:'SANDWICHERA SM24520AR TRIANGULAR',    status:'REGULAR',meses:[50,32,32,32,30,0,0,0,0,0,0,0]},
+  {cat:'SANDWICHERAS', cod:'BD87',desc:'SANDWICHERA SM24530CL TRIANGULAR',    status:'REGULAR',meses:[25,30,46,51,111,66,38,53,23,38,55,50]},
+  {cat:'SANDWICHERAS', cod:'BD91',desc:'SANDWICHERA SM602F1WDAR',             status:'REGULAR',meses:[25,25,25,25,25,25,25,25,25,25,25,25]}
 ];
+forecast2026.forEach(f=>{f.total=f.meses.reduce((a,b)=>a+b,0)});
 
-const Q1_DATA = [
-  {cat:'ASPIRADORAS',q1:[0, 89, 163, 56, 171, 181],bestYear:'2026',bestVal:181},
-  {cat:'BATIDORAS',q1:[561, 150, 296, 211, 375, 185],bestYear:'2021',bestVal:561},
-  {cat:'CAFETERAS',q1:[157, 114, 282, 141, 145, 107],bestYear:'2023',bestVal:282},
-  {cat:'FREIDORAS',q1:[0, 0, 303, 301, 306, 107],bestYear:'2025',bestVal:306},
-  {cat:'HORNOS DE MESA',q1:[175, 55, 182, 149, 240, 319],bestYear:'2026',bestVal:319},
-  {cat:'JARRAS ELECTRICAS',q1:[121, 65, 338, 305, 150, 69],bestYear:'2023',bestVal:338},
-  {cat:'LICUADORAS',q1:[853, 753, 713, 699, 1351, 1226],bestYear:'2025',bestVal:1351},
-  {cat:'MIXERS',q1:[47, 123, 241, 239, 268, -6],bestYear:'2025',bestVal:268},
-  {cat:'OLLAS ELECTRICAS',q1:[40, 61, 76, 166, 118, 55],bestYear:'2024',bestVal:166},
-  {cat:'PLANCHAS DE ROPA',q1:[2416, 3816, 2623, 3586, 3450, 2110],bestYear:'2022',bestVal:3816},
-  {cat:'PROCESADORES',q1:[104, 188, 0, 0, 201, 152],bestYear:'2025',bestVal:201},
-  {cat:'SANDWICHERAS',q1:[48, 26, 163, 212, 141, 106],bestYear:'2024',bestVal:212}
-];
-
-const MONTHS_SHORT = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-const PALETTE = ['#D50000','#1A1A1A','#404040','#0F8A65','#2563EB','#D97706','#0891B2','#7C3AED','#BE123C','#4338CA','#1D4ED8','#B45309','#047857'];
-
-// ============================================================
-// UTILITY
-// ============================================================
-function fmt(n){if(n===null||n===undefined||isNaN(n))return'—';return Math.round(n).toLocaleString('es-PY')}
-function pct(a,b){if(!b||b===0)return null;return((a-b)/Math.abs(b)*100)}
-function pctFmt(a,b){let p=pct(a,b);if(p===null)return'—';return(p>=0?'+':'')+p.toFixed(1)+'%'}
-function badgePct(a,b){let p=pct(a,b);if(p===null)return`<span class="badge flat">N/D</span>`;let cls=p>0?'up':p<0?'down':'flat';return`<span class="badge ${cls}">${p>=0?'▲':'▼'} ${Math.abs(p).toFixed(1)}%</span>`}
-function sum(arr){return arr.reduce((a,b)=>a+(Number(b)||0),0)}
-
-// ============================================================
-// PANEL 1 — ANNUAL
-// ============================================================
-function buildPanel1(){
-  new Chart(document.getElementById('chartAnual'),{
-    type:'bar',
-    data:{
-      labels:['2021','2022','2023','2024','2025','2026 Q1'],
-      datasets:[{
-        label:'Unidades',
-        data:[19058,20293,25784,34656,33508,9728],
-        backgroundColor:['#404040','#404040','#404040','#404040','#D50000','#aaa'],
-        borderRadius:5
-      }]
-    },
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>fmt(v)},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
-  });
-
-  new Chart(document.getElementById('chartVarAnual'),{
-    type:'bar',
-    data:{
-      labels:['22/21','23/22','24/23','25/24'],
-      datasets:[{
-        label:'Var %',
-        data:[6.5,27.1,34.4,-3.3],
-        backgroundColor:[6.5,27.1,34.4,-3.3].map(v=>v>=0?'#0F8A65':'#D50000'),
-        borderRadius:5
-      }]
-    },
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>v+'%'},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
-  });
-
-  let html='';
-  const cats2025sorted = [...CATS_ALL].sort((a,b)=>(VENTAS_ANUAL[b][4]||0)-(VENTAS_ANUAL[a][4]||0));
-  cats2025sorted.forEach(cat=>{
-    const v=VENTAS_ANUAL[cat];
-    const q1Obj=Q1_DATA.find(q=>q.cat===cat);
-    const v26=q1Obj?q1Obj.q1[5]:0;
-    html+=`<tr>
-      <td class="name">${cat}</td>
-      <td class="num">${fmt(v[0])}</td><td class="num">${fmt(v[1])}</td>
-      <td class="num">${fmt(v[2])}</td><td class="num">${fmt(v[3])}</td>
-      <td class="num"><strong>${fmt(v[4])}</strong></td>
-      <td class="num">${badgePct(v[4],v[3])}</td>
-      <td class="num">${fmt(v26)}</td>
-    </tr>`;
-  });
-  html+=`<tr class="total-row">
-    <td>TOTAL GENERAL</td>
-    <td class="num">19.058</td><td class="num">20.293</td><td class="num">25.784</td>
-    <td class="num">34.656</td><td class="num">33.508</td>
-    <td class="num"><span class="badge down">▼ −3,3%</span></td>
-    <td class="num">9.728</td>
-  </tr>`;
-  document.getElementById('tblAnual').innerHTML=html;
-}
-
-// ============================================================
-// PANEL 2 — RANKING
-// ============================================================
-function buildPanel2(){
-  const data2025 = CATS_ALL.map(c=>({cat:c,v2025:VENTAS_ANUAL[c][4]||0,v2024:VENTAS_ANUAL[c][3]||0}))
-    .sort((a,b)=>b.v2025-a.v2025);
-  const total2025=sum(data2025.map(d=>d.v2025));
-  const maxV=data2025[0].v2025;
-
-  let rankHtml='';
-  data2025.forEach((d,i)=>{
-    rankHtml+=`<div class="rank-item">
-      <span class="rank-num">${i+1}</span>
-      <span class="rank-name" title="${d.cat}">${d.cat}</span>
-      <div class="bar-bg"><div class="bar-fill" style="width:${(d.v2025/maxV*100).toFixed(1)}%"></div></div>
-      <span class="rank-val">${fmt(d.v2025)}</span>
-      ${badgePct(d.v2025,d.v2024)}
-    </div>`;
-  });
-  document.getElementById('rankList2025').innerHTML=rankHtml;
-
-  new Chart(document.getElementById('chartRanking'),{
-    type:'bar',
-    data:{
-      labels:data2025.slice(0,10).map(d=>d.cat),
-      datasets:[
-        {label:'2024',data:data2025.slice(0,10).map(d=>d.v2024),backgroundColor:'rgba(150,150,150,.5)',borderRadius:3},
-        {label:'2025',data:data2025.slice(0,10).map(d=>d.v2025),backgroundColor:'#D50000',borderRadius:3}
-      ]
-    },
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,scales:{x:{ticks:{callback:v=>fmt(v)},grid:{color:'rgba(0,0,0,.05)'}},y:{grid:{display:false}}}}
-  });
-
-  let tblHtml='';
-  data2025.forEach((d,i)=>{
-    const varUnd=d.v2025-d.v2024;
-    const part=(d.v2025/total2025*100).toFixed(1);
-    tblHtml+=`<tr>
-      <td>${i+1}</td>
-      <td class="name">${d.cat}</td>
-      <td class="num">${fmt(d.v2024)}</td>
-      <td class="num"><strong>${fmt(d.v2025)}</strong></td>
-      <td class="num">${varUnd>=0?'+':''}${fmt(varUnd)}</td>
-      <td class="num">${badgePct(d.v2025,d.v2024)}</td>
-      <td class="num">${part}%</td>
-    </tr>`;
-  });
-  document.getElementById('tblRanking').innerHTML=tblHtml;
-}
-
-// ============================================================
-// PANEL 3 — VARIACIÓN 2021-2025
-// ============================================================
-function buildPanel3(){
-  const data = CATS_ALL.map(c=>{
-    const v=VENTAS_ANUAL[c];
-    const var2125=pct(v[4],v[0]);
-    const cagr=v[0]>0&&v[4]>0?((Math.pow(v[4]/v[0],0.25)-1)*100):null;
-    return{cat:c,vals:v,var2125,cagr};
-  }).filter(d=>d.vals[0]>0||d.vals[4]>0);
-
-  const top3=data.filter(d=>d.var2125!==null).sort((a,b)=>b.var2125-a.var2125).slice(0,3);
-  let kpiHtml='';
-  top3.forEach(d=>{
-    const cls=d.var2125>=0?'up':'down';
-    kpiHtml+=`<div class="kpi"><div class="k-label">${d.cat}</div><div class="k-val" style="font-size:1.5rem">${d.var2125>=0?'+':''}${d.var2125.toFixed(0)}%</div><div class="k-sub">vs 2021 · CAGR ${d.cagr!==null?(d.cagr>=0?'+':'')+d.cagr.toFixed(1)+'%':'N/D'}</div><span class="k-badge ${cls}">${d.var2125>=0?'▲':'▼'} 2021→2025</span></div>`;
-  });
-  document.getElementById('kpiVar').innerHTML=kpiHtml;
-
-  const sorted=data.filter(d=>d.var2125!==null).sort((a,b)=>b.var2125-a.var2125);
-  new Chart(document.getElementById('chartVar2125'),{
-    type:'bar',
-    data:{
-      labels:sorted.map(d=>d.cat),
-      datasets:[{label:'Var % 2021→2025',data:sorted.map(d=>d.var2125),backgroundColor:sorted.map(d=>d.var2125>=0?'#0F8A65':'#D50000'),borderRadius:4}]
-    },
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>v+'%'},grid:{color:'rgba(0,0,0,.05)'}},y:{grid:{display:false}}}}
-  });
-
-  const top5cats=['PLANCHAS DE ROPA','LICUADORAS','CAFETERAS','FREIDORAS','OLLAS ELECTRICAS'];
-  new Chart(document.getElementById('chartTendencia'),{
-    type:'line',
-    data:{
-      labels:YEARS,
-      datasets:top5cats.map((c,i)=>({
-        label:c,data:VENTAS_ANUAL[c],
-        borderColor:PALETTE[i],backgroundColor:PALETTE[i]+'22',
-        tension:.3,fill:false,pointRadius:4,borderWidth:2
-      }))
-    },
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:10}}},scales:{y:{ticks:{callback:v=>fmt(v)},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
-  });
-
-  let tblHtml='';
-  data.sort((a,b)=>(b.var2125||0)-(a.var2125||0)).forEach(d=>{
-    const vc=d.var2125!==null;
-    tblHtml+=`<tr>
-      <td class="name">${d.cat}</td>
-      ${d.vals.map(v=>`<td class="num">${fmt(v)}</td>`).join('')}
-      <td class="num">${vc?badgePct(d.vals[4],d.vals[0]):'—'}</td>
-      <td class="num">${d.cagr!==null?(d.cagr>=0?'+':'')+d.cagr.toFixed(1)+'%':'—'}</td>
-    </tr>`;
-  });
-  document.getElementById('tblVar2125').innerHTML=tblHtml;
-}
-
-// ============================================================
-// PANEL 4 — TOP CATEGORIES
-// ============================================================
-function buildPanel4(){
-  const top5=['PLANCHAS DE ROPA','LICUADORAS','CAFETERAS','FREIDORAS','OLLAS ELECTRICAS'];
-  new Chart(document.getElementById('chartTop5'),{
-    type:'bar',
-    data:{
-      labels:YEARS,
-      datasets:top5.map((c,i)=>({label:c,data:VENTAS_ANUAL[c],backgroundColor:PALETTE[i],borderRadius:3}))
-    },
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:10}}},scales:{x:{stacked:false,grid:{display:false}},y:{ticks:{callback:v=>fmt(v)},grid:{color:'rgba(0,0,0,.05)'}}}}
-  });
-
-  const pie2025data=CATS_ALL.map(c=>VENTAS_ANUAL[c][4]).filter(v=>v>0);
-  const pie2025labels=CATS_ALL.filter(c=>VENTAS_ANUAL[c][4]>0);
-  new Chart(document.getElementById('chartPie2025'),{
-    type:'doughnut',
-    data:{labels:pie2025labels,datasets:[{data:pie2025data,backgroundColor:PALETTE,hoverOffset:6,borderWidth:2}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:9},boxWidth:10}}}}
-  });
-
-  const pie2024data=CATS_ALL.map(c=>VENTAS_ANUAL[c][3]).filter(v=>v>0);
-  const pie2024labels=CATS_ALL.filter(c=>VENTAS_ANUAL[c][3]>0);
-  new Chart(document.getElementById('chartPie2024'),{
-    type:'doughnut',
-    data:{labels:pie2024labels,datasets:[{data:pie2024data,backgroundColor:PALETTE,hoverOffset:6,borderWidth:2}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:9},boxWidth:10}}}}
-  });
-}
-
-// ============================================================
-// PANEL 5 — DESGLOSE SKU
-// ============================================================
-let skuLineChart=null;
-function buildPanel5(){
-  const sel=document.getElementById('selCat');
-  const catsWithData=CATS_ALL.filter(c=>SKU_DATA[c]&&SKU_DATA[c].length>0);
-  catsWithData.forEach(c=>{
-    const o=document.createElement('option');o.value=c;o.textContent=c;sel.appendChild(o);
-  });
-  updateSkuPanel();
-}
-function updateSkuPanel(){
-  const cat=document.getElementById('selCat').value;
-  const skus=SKU_DATA[cat]||[];
-
-  if(skuLineChart){skuLineChart.destroy();}
-  skuLineChart=new Chart(document.getElementById('chartSkuLines'),{
-    type:'line',
-    data:{
-      labels:MONTHS_SHORT,
-      datasets:skus.map((s,i)=>({
-        label:s.cod+' – '+s.desc.substring(0,30),
-        data:s.m,
-        borderColor:PALETTE[i%PALETTE.length],
-        backgroundColor:PALETTE[i%PALETTE.length]+'22',
-        tension:.3,fill:false,pointRadius:3,borderWidth:2
-      }))
-    },
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:9},boxWidth:10}}},scales:{y:{ticks:{callback:v=>fmt(v)},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
-  });
-
-  const sorted=[...skus].map(s=>({...s,total:sum(s.m)})).sort((a,b)=>b.total-a.total);
-  let tblHtml='';
-  sorted.forEach(s=>{
-    const rowTotal=sum(s.m);
-    const stClass=s.status==='S'?'disc':'reg';
-    const stLabel=s.status==='S'?'DISCONTINUADO':'REGULAR';
-    tblHtml+=`<tr>
-      <td><strong>${s.cod}</strong></td>
-      <td class="name">${s.desc}</td>
-      ${s.m.map(v=>`<td class="num">${v!==0?fmt(v):'—'}</td>`).join('')}
-      <td class="num"><strong>${fmt(rowTotal)}</strong></td>
-      <td class="num">${fmt(s.stock)}</td>
-      <td><span class="badge ${stClass}">${stLabel}</span></td>
-    </tr>`;
-  });
-  const monthTotals=MONTHS_SHORT.map((_,mi)=>sum(sorted.map(s=>s.m[mi]||0)));
-  const grandTotal=sum(monthTotals);
-  tblHtml+=`<tr class="total-row">
-    <td colspan="2">TOTAL MOSTRADO</td>
-    ${monthTotals.map(v=>`<td class="num">${fmt(v)}</td>`).join('')}
-    <td class="num"><strong>${fmt(grandTotal)}</strong></td>
-    <td colspan="2"></td>
-  </tr>`;
-  document.getElementById('tblSkuVentas').innerHTML=tblHtml;
-}
-
-// ============================================================
-// PANEL 6 — CAT × AÑO
-// ============================================================
-let catAnioChart=null;
-function buildPanel6(){
-  const sel=document.getElementById('selCat6');
-  CATS_ALL.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;sel.appendChild(o);});
-  updateCatAnio();
-}
-function updateCatAnio(){
-  const cat=document.getElementById('selCat6').value;
-  const vals=VENTAS_ANUAL[cat];
-  const q1Obj=Q1_DATA.find(q=>q.cat===cat);
-  const q1=q1Obj?q1Obj.q1[5]:0;
-
-  if(catAnioChart){catAnioChart.destroy();}
-  catAnioChart=new Chart(document.getElementById('chartCatAnio'),{
-    type:'bar',
-    data:{
-      labels:['2021','2022','2023','2024','2025','2026 Q1'],
-      datasets:[{
-        label:'Unidades',
-        data:[...vals,q1],
-        backgroundColor:['#404040','#404040','#404040','#404040','#D50000','#aaa'],
-        borderRadius:5
-      }]
-    },
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>fmt(v)},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
-  });
-
-  let tblHtml='';
-  CATS_ALL.forEach(c=>{
-    const v=VENTAS_ANUAL[c];
-    const qv=Q1_DATA.find(x=>x.cat===c);
-    const q26=qv?qv.q1[5]:0;
-    tblHtml+=`<tr>
-      <td class="name">${c}</td>
-      ${v.map(num=>`<td class="num">${fmt(num)}</td>`).join('')}
-      <td class="num"><strong>${fmt(q26)}</strong></td>
-    </tr>`;
-  });
-  document.getElementById('tblCatAnio').innerHTML=tblHtml;
-}
-
-// ============================================================
-// PANEL 7 — COBERTURA
-// ============================================================
-function buildPanel7(){
-  const years=['2021','2022','2023','2024','2025','2026'];
-  const topCats=['PLANCHAS DE ROPA','LICUADORAS','CAFETERAS','ASPIRADORAS','OLLAS ELECTRICAS'];
-
-  new Chart(document.getElementById('chartCob'),{
-    type:'line',
-    data:{
-      labels:years,
-      datasets:topCats.map((cat,i)=>{
-        const row=COBERTURA.find(r=>r.cat===cat);
-        return{label:cat,data:row?row.vals:[],borderColor:PALETTE[i],backgroundColor:PALETTE[i]+'22',tension:.3,fill:false,pointRadius:4,borderWidth:2};
-      })
-    },
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:9},boxWidth:10}}},scales:{y:{ticks:{callback:v=>fmt(v)},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
-  });
-
-  const cob25=COBERTURA.map(r=>r.vals[4]);
-  const cobAvg=COBERTURA.map(r=>{const v=r.vals.filter(x=>x>0);return v.length?sum(v)/v.length:0;});
-  new Chart(document.getElementById('chartCobBar'),{
-    type:'bar',
-    data:{
-      labels:COBERTURA.map(r=>r.cat),
-      datasets:[
-        {label:'Promedio histórico',data:cobAvg.map(v=>+v.toFixed(0)),backgroundColor:'rgba(150,150,150,.5)',borderRadius:3},
-        {label:'2025',data:cob25,backgroundColor:'#D50000',borderRadius:3}
-      ]
-    },
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}}},scales:{x:{ticks:{callback:v=>fmt(v)},grid:{color:'rgba(0,0,0,.05)'}},y:{grid:{display:false},ticks:{font:{size:9}}}}}
-  });
-
-  const colAvgs=years.map((_,yi)=>{
-    const vals=COBERTURA.map(r=>r.vals[yi]).filter(v=>v>0);
-    return vals.length?sum(vals)/vals.length:0;
-  });
-  let tblHtml='';
-  COBERTURA.forEach(r=>{
-    const validVals=r.vals.filter(v=>v>0);
-    const avg=validVals.length?sum(validVals)/validVals.length:0;
-    tblHtml+=`<tr>
-      <td class="name">${r.cat}</td>
-      ${r.vals.map(v=>`<td class="num">${fmt(v)||'—'}</td>`).join('')}
-      <td class="num"><strong>${avg.toFixed(0)}</strong></td>
-    </tr>`;
-  });
-  tblHtml+=`<tr class="total-row">
-    <td>PROMEDIO GENERAL</td>
-    ${colAvgs.map(v=>`<td class="num"><strong>${v.toFixed(0)}</strong></td>`).join('')}
-    <td class="num"></td>
-  </tr>`;
-  document.getElementById('tblCobertura').innerHTML=tblHtml;
-}
-
-// ============================================================
-// PANEL 8 — FORECAST
-// ============================================================
-function buildPanel8(){
-  const fcstByCat={};
-  FORECAST_DATA.forEach(f=>{
-    const t=sum(f.m);
-    fcstByCat[f.cat]=(fcstByCat[f.cat]||0)+t;
-  });
-
-  const totalFcst=sum(Object.values(fcstByCat));
-  const totalVta25=TOTALES_ANUAL[4];
-
-  let kpiHtml=`
-    <div class="kpi"><div class="k-label">Forecast Total 2026</div><div class="k-val">${fmt(totalFcst)}</div><div class="k-sub">proyección muestra</div></div>
-    <div class="kpi"><div class="k-label">Venta 2025 Real</div><div class="k-val">${fmt(totalVta25)}</div><div class="k-sub">total general</div></div>
-    <div class="kpi"><div class="k-label">Crecimiento Fcst vs 25</div><div class="k-val">${pctFmt(totalFcst,totalVta25)}</div><div class="k-sub">global esperado</div><span class="k-badge ${totalFcst>=totalVta25?'up':'down'}">${totalFcst>=totalVta25?'▲':'▼'}</span></div>
-  `;
-  document.getElementById('kpiForecast').innerHTML=kpiHtml;
-
-  const fcstCats=Object.keys(fcstByCat);
-  new Chart(document.getElementById('chartForecastCat'),{
-    type:'bar',
-    data:{
-      labels:fcstCats,
-      datasets:[
-        {label:'Venta 2025',data:fcstCats.map(c=>VENTAS_ANUAL[c]?VENTAS_ANUAL[c][4]:0),backgroundColor:'rgba(150,150,150,.5)',borderRadius:3},
-        {label:'Forecast 2026',data:fcstCats.map(c=>fcstByCat[c]),backgroundColor:'#D50000',borderRadius:3}
-      ]
-    },
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10}}}},scales:{x:{ticks:{callback:v=>fmt(v)},grid:{color:'rgba(0,0,0,.05)'}},y:{grid:{display:false},ticks:{font:{size:9}}}}}
-  });
-
-  const fcstMes=Array(12).fill(0);
-  FORECAST_DATA.forEach(f=>{f.m.forEach((v,i)=>fcstMes[i]+=v);});
-  new Chart(document.getElementById('chartForecastMes'),{
-    type:'bar',
-    data:{
-      labels:MONTHS_SHORT,
-      datasets:[{label:'Forecast 2026',data:fcstMes,backgroundColor:'#D50000',borderRadius:4}]
-    },
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>fmt(v)},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
-  });
-
-  let tblHtml='';
-  let prevCat='';
-  const rows=[...FORECAST_DATA];
-  rows.forEach(f=>{
-    const t=sum(f.m);
-    const pctVs2025=f.vta2025>0?pct(t,f.vta2025):null;
-    const stClass=f.status==='REGULAR'?'reg':'amber';
-    tblHtml+=`<tr>
-      <td style="font-size:.65rem">${f.cat!==prevCat?f.cat:''}</td>
-      <td><strong>${f.cod}</strong></td>
-      <td class="name">${f.desc}</td>
-      <td><span class="badge ${stClass}">${f.status}</span></td>
-      ${f.m.map(v=>`<td class="num">${v>0?fmt(v):'—'}</td>`).join('')}
-      <td class="num"><strong>${fmt(t)}</strong></td>
-      <td class="num">${fmt(f.vta2025)||'—'}</td>
-      <td class="num">${pctVs2025!==null?`<span class="badge ${pctVs2025>=0?'up':'down'}">${pctVs2025>=0?'+':''}${pctVs2025.toFixed(1)}%</span>`:'—'}</td>
-    </tr>`;
-    prevCat=f.cat;
-  });
-  const gt=sum(fcstMes);
-  tblHtml+=`<tr class="total-row">
-    <td colspan="4">TOTAL FORECAST MOSTRADO</td>
-    ${fcstMes.map(v=>`<td class="num"><strong>${fmt(v)}</strong></td>`).join('')}
-    <td class="num"><strong>${fmt(gt)}</strong></td>
-    <td colspan="2"></td>
-  </tr>`;
-  document.getElementById('tblForecast').innerHTML=tblHtml;
-}
-
-// ============================================================
-// PANEL 9 — Q1
-// ============================================================
-function buildPanel9(){
-  const q1Totals = ['2021','2022','2023','2024','2025','2026'].map((_,i)=>sum(Q1_DATA.map(q=>q.q1[i])));
-
-  new Chart(document.getElementById('chartQ1'),{
-    type:'bar',
-    data:{
-      labels:['Q1 2021','Q1 2022','Q1 2023','Q1 2024','Q1 2025','Q1 2026'],
-      datasets:[{
-        label:'Unidades Q1',
-        data:q1Totals,
-        backgroundColor:q1Totals.map((_,i)=>i===5?'#1A1A1A':i===4?'#D50000':'rgba(213,0,0,.4)'),
-        borderRadius:5
-      }]
-    },
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>fmt(v)},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
-  });
-
-  let tblHtml='';
-  Q1_DATA.forEach(d=>{
-    const p26_25=pct(d.q1[5],d.q1[4]);
-    const p26_best=pct(d.q1[5],d.bestVal);
-    const c26_25=p26_25===null?'flat':p26_25>=0?'up':'down';
-    const c26_best=p26_best===null?'flat':p26_best>=0?'up':'down';
-    tblHtml+=`<tr>
-      <td class="name">${d.cat}</td>
-      ${d.q1.slice(0,6).map(v=>`<td class="num">${fmt(v)}</td>`).join('')}
-      <td class="num"><strong>${fmt(d.bestVal)}</strong></td>
-      <td class="num">${d.bestYear}</td>
-      <td class="num"><span class="badge ${c26_25}">${p26_25!==null?(p26_25>=0?'+':'')+p26_25.toFixed(1)+'%':'—'}</span></td>
-      <td class="num"><span class="badge ${c26_best}">${p26_best!==null?(p26_best>=0?'+':'')+p26_best.toFixed(1)+'%':'—'}</span></td>
-    </tr>`;
-  });
-  document.getElementById('tblQ1').innerHTML=tblHtml;
-}
-
-// ============================================================
-// PANEL 10 — QUIEBRES
-// ============================================================
-function buildPanel10(){
-  const quiebres=[];
-  let riesgoAlto=0, riesgoMedio=0, riesgoOk=0;
-
-  FORECAST_DATA.forEach(f=>{
-    const fcstTotal=sum(f.m);
-    let stockVal=null;
-    for(const cat in SKU_DATA){
-      const sku=SKU_DATA[cat].find(s=>s.cod===f.cod);
-      if(sku){stockVal=sku.stock;break;}
-    }
-    if(stockVal===null)return;
-    const montlyAvg2025=(f.vta2025||0)/12;
-    const coverageMonths=montlyAvg2025>0?stockVal/montlyAvg2025:stockVal>0?99:0;
-    const brecha=stockVal-fcstTotal;
-    let risk='';
-    if(coverageMonths<2||brecha<-200){risk='🚨 ALTO';riesgoAlto++;}
-    else if(coverageMonths<3||brecha<0){risk='⚠️ MEDIO';riesgoMedio++;}
-    else {risk='✅ OK';riesgoOk++;}
-    quiebres.push({cat:f.cat,cod:f.cod,desc:f.desc,stock:stockVal,fcst:fcstTotal,avg2025:montlyAvg2025,coverage:coverageMonths,brecha,risk});
-  });
-
-  document.getElementById('valRiesgoAlto').innerText=riesgoAlto;
-  document.getElementById('valRiesgoMedio').innerText=riesgoMedio;
-  document.getElementById('valRiesgoOk').innerText=riesgoOk;
-
-  quiebres.sort((a,b)=>a.coverage-b.coverage);
-
-  new Chart(document.getElementById('chartQuiebres'),{
-    type:'bar',
-    data:{
-      labels:quiebres.map(q=>q.cod),
-      datasets:[
-        {label:'Stock disponible',data:quiebres.map(q=>q.stock),backgroundColor:'#1A1A1A',borderRadius:3},
-        {label:'Forecast 2026',data:quiebres.map(q=>q.fcst),backgroundColor:'#D50000',borderRadius:3}
-      ]
-    },
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11}}}},scales:{y:{ticks:{callback:v=>fmt(v)},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
-  });
-
-  let tblHtml='';
-  quiebres.forEach(q=>{
-    const riskClass=q.risk.includes('ALTO')?'brk':q.risk.includes('MEDIO')?'disc':'ok';
-    const brechaFmt=q.brecha>=0?`+${fmt(q.brecha)}`:fmt(q.brecha);
-    tblHtml+=`<tr>
-      <td style="font-size:.65rem">${q.cat}</td>
-      <td><strong>${q.cod}</strong></td>
-      <td class="name">${q.desc.substring(0,45)}</td>
-      <td class="num">${fmt(q.stock)}</td>
-      <td class="num">${fmt(q.fcst)}</td>
-      <td class="num">${q.avg2025>0?q.avg2025.toFixed(0):'—'}</td>
-      <td class="num">${q.coverage<99?q.coverage.toFixed(1)+' m':'> 24 m'}</td>
-      <td class="num" style="color:${q.brecha>=0?'var(--green)':'var(--red)'}"><strong>${brechaFmt}</strong></td>
-      <td><span class="badge ${riskClass}">${q.risk}</span></td>
-    </tr>`;
-  });
-  document.getElementById('tblQuiebres').innerHTML=tblHtml;
-}
-
-// ============================================================
-// NAVIGATION
-// ============================================================
-function showPanel(id,btn){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  btn.classList.add('active');
-}
-
-document.addEventListener('DOMContentLoaded',()=>{
-  buildPanel1();
-  buildPanel2();
-  buildPanel3();
-  buildPanel4();
-  buildPanel5();
-  buildPanel6();
-  buildPanel7();
-  buildPanel8();
-  buildPanel9();
-  buildPanel10();
+// Historical SKU by year for Q1 analysis
+const skuHist = {};
+sku2025.forEach(s=>{
+  skuHist[s.cod]={cat:s.cat,desc:s.desc,
+    q1_2021:[0,0,0], q1_2022:[0,0,0], q1_2023:[0,0,0], q1_2024:[0,0,0], q1_2025:[s.meses[0],s.meses[1],s.meses[2]]
+  };
 });
+// Approximate Q1 history by category from ventasAño
+// We use known category totals and seasonal factor
+
+// ============= HELPERS =============
+function fmt(n){return n==null?'—':n.toLocaleString('es-PY')}
+function pct(a,b){
+  if(!b||b===0) return null;
+  return ((a-b)/Math.abs(b)*100).toFixed(1);
+}
+function pctBadge(p){
+  if(p==null) return '<span class="badge flat">N/D</span>';
+  const v=parseFloat(p);
+  if(v>5) return `<span class="badge up">▲ ${v>0?'+':''}${p}%</span>`;
+  if(v<-5) return `<span class="badge down">▼ ${p}%</span>`;
+  return `<span class="badge flat">${p}%</span>`;
+}
+function clr(i){
+  const palette=['#F26522','#1A1A1A','#4A90D9','#27AE60','#8E44AD','#E67E22','#2980B9','#C0392B','#16A085','#F39C12','#D35400','#1ABC9C','#2C3E50','#7F8C8D'];
+  return palette[i%palette.length];
+}
+
+// ============= CHARTS =============
+let charts={};
+function destroyChart(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
+
+function renderResumen(){
+  // KPIs
+  const t25=totalesAño[2025], t24=totalesAño[2024], t26=totalesAño[2026];
+  const vPct=pct(t25,t24);
+  document.getElementById('kpi-resumen').innerHTML=`
+    <div class="kpi"><div class="k-label">Total Vendido 2025</div><div class="k-val">${fmt(t25)}</div><div class="k-sub">Unidades totales</div>${pctBadge(vPct)}</div>
+    <div class="kpi"><div class="k-label">Total Vendido 2024</div><div class="k-val">${fmt(t24)}</div><div class="k-sub">Unidades totales</div></div>
+    <div class="kpi"><div class="k-label">2026 YTD (Q1+ABR)</div><div class="k-val">${fmt(t26)}</div><div class="k-sub">Unidades acumuladas</div></div>
+    <div class="kpi"><div class="k-label">Categorías Activas</div><div class="k-val">14</div><div class="k-sub">Con ventas en 2025</div></div>
+    <div class="kpi"><div class="k-label">SKUs Activos 2025</div><div class="k-val">${sku2025.filter(s=>s.total>0).length}</div><div class="k-sub">Con ventas registradas</div></div>
+    <div class="kpi"><div class="k-label">Crecim. 2021→2025</div><div class="k-val">${pct(t25,totalesAño[2021])}%</div><div class="k-sub">Variación acumulada</div></div>
+  `;
+
+  // Chart Venta Anual
+  const years=['2021','2022','2023','2024','2025','2026'];
+  const totales=years.map(y=>totalesAño[y]);
+  destroyChart('chartVentaAnual');
+  charts['chartVentaAnual']=new Chart(document.getElementById('chartVentaAnual'),{
+    type:'bar',
+    data:{labels:years.map(y=>y==='2026'?'2026 YTD':y),
+      datasets:[{label:'Unidades',data:totales,backgroundColor:years.map(y=>y==='2026'?'rgba(242,101,34,.45)':'#F26522'),borderRadius:6}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${fmt(c.raw)} uds`}}},
+      scales:{y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{callback:v=>fmt(v)}},x:{grid:{display:false}}}}
+  });
+
+  // Chart Variación %
+  const varData=years.slice(1).map((y,i)=>parseFloat(pct(totalesAño[y],totalesAño[years[i]])));
+  destroyChart('chartVarAnual');
+  charts['chartVarAnual']=new Chart(document.getElementById('chartVarAnual'),{
+    type:'bar',
+    data:{labels:years.slice(1).map((y,i)=>`${years[i]}→${y}`),
+      datasets:[{label:'Var %',data:varData,backgroundColor:varData.map(v=>v>=0?'rgba(10,122,90,.7)':'rgba(192,57,43,.7)'),borderRadius:6}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw>0?'+':''}${c.raw}%`}}},
+      scales:{y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{callback:v=>`${v}%`}},x:{grid:{display:false}}}}
+  });
+
+  // Chart variación 2021-2025 por categoría
+  const catVars=CATS.filter(c=>ventasAño[c]).map(c=>{
+    const v21=ventasAño[c][2021]||0, v25=ventasAño[c][2025]||0;
+    return {cat:c, varPct: v21>0?parseFloat(((v25-v21)/v21*100).toFixed(1)):null};
+  }).filter(x=>x.varPct!==null).sort((a,b)=>b.varPct-a.varPct);
+
+  destroyChart('chartVar2125');
+  charts['chartVar2125']=new Chart(document.getElementById('chartVar2125'),{
+    type:'bar',
+    data:{labels:catVars.map(x=>x.cat),
+      datasets:[{label:'Var % 2021→2025',data:catVars.map(x=>x.varPct),
+        backgroundColor:catVars.map(x=>x.varPct>=0?'rgba(10,122,90,.7)':'rgba(192,57,43,.7)'),borderRadius:5}]},
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw>0?'+':''}${c.raw}%`}}},
+      scales:{x:{grid:{color:'rgba(0,0,0,.05)'},ticks:{callback:v=>`${v}%`}},y:{grid:{display:false},ticks:{font:{size:11}}}}}
+  });
+
+  // Tabla ventas por año
+  const tbl=document.getElementById('tblVentasAnio');
+  const allYears=['2021','2022','2023','2024','2025','2026'];
+  let h=`<thead><tr><th>Categoría</th>${allYears.map(y=>`<th class="num">${y==='2026'?'2026 YTD':y}</th>`).join('')}<th class="num">Var 24→25</th></tr></thead><tbody>`;
+  const sortedCats=CATS.filter(c=>ventasAño[c]).sort((a,b)=>(ventasAño[b][2025]||0)-(ventasAño[a][2025]||0));
+  sortedCats.forEach(c=>{
+    const d=ventasAño[c];
+    const vp=pct(d[2025]||0,d[2024]||0);
+    h+=`<tr><td class="name">${c}</td>${allYears.map(y=>`<td class="num">${fmt(d[y]||0)}</td>`).join('')}<td class="num">${pctBadge(vp)}</td></tr>`;
+  });
+  // Total
+  h+=`<tr class="total-row"><td>TOTAL GENERAL</td>${allYears.map(y=>`<td class="num">${fmt(totalesAño[y])}</td>`).join('')}<td class="num">${pctBadge(pct(totalesAño[2025],totalesAño[2024]))}</td></tr>`;
+  h+='</tbody>';
+  tbl.innerHTML=h;
+}
+
+function renderRanking(){
+  const sorted=[...CATS].filter(c=>ventasAño[c]).map(c=>({cat:c,u2025:ventasAño[c][2025]||0,u2024:ventasAño[c][2024]||0}))
+    .sort((a,b)=>b.u2025-a.u2025);
+  const max=sorted[0].u2025;
+
+  // Rank list visual
+  const rl=document.getElementById('rankList2025');
+  rl.innerHTML=sorted.slice(0,10).map((x,i)=>{
+    const vp=pct(x.u2025,x.u2024);
+    return `<div class="rank-item">
+      <span class="rank-num">${i+1}</span>
+      <span class="rank-name" title="${x.cat}">${x.cat}</span>
+      <div class="bar-bg"><div class="bar-fill" style="width:${(x.u2025/max*100).toFixed(1)}%"></div></div>
+      <span class="rank-val">${fmt(x.u2025)}</span>
+      <span class="rank-pct">${pctBadge(vp)}</span>
+    </div>`;
+  }).join('');
+
+  // Top cats chart (stacked bars 2021-2025)
+  const top5=sorted.slice(0,5).map(x=>x.cat);
+  destroyChart('chartTopCat');
+  charts['chartTopCat']=new Chart(document.getElementById('chartTopCat'),{
+    type:'bar',
+    data:{labels:['2021','2022','2023','2024','2025'],
+      datasets:top5.map((c,i)=>({label:c,data:['2021','2022','2023','2024','2025'].map(y=>ventasAño[c][y]||0),backgroundColor:clr(i),borderRadius:3}))},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:12}}},
+      scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,ticks:{callback:v=>fmt(v)},grid:{color:'rgba(0,0,0,.05)'}}}}
+  });
+
+  // Full ranking table
+  const tbl=document.getElementById('tblRanking');
+  let h=`<thead><tr><th>#</th><th>Categoría</th><th class="num">Unid 2025</th><th class="num">Unid 2024</th><th class="num">Var %</th><th class="num">Unid 2023</th><th class="num">Var 23→25</th><th class="num">Part. 2025</th></tr></thead><tbody>`;
+  sorted.forEach((x,i)=>{
+    const vp=pct(x.u2025,x.u2024);
+    const vp23=pct(x.u2025,ventasAño[x.cat][2023]||0);
+    const part=(x.u2025/totalesAño[2025]*100).toFixed(1);
+    h+=`<tr><td>${i+1}</td><td class="name">${x.cat}</td><td class="num">${fmt(x.u2025)}</td><td class="num">${fmt(x.u2024)}</td><td class="num">${pctBadge(vp)}</td><td class="num">${fmt(ventasAño[x.cat][2023]||0)}</td><td class="num">${pctBadge(vp23)}</td><td class="num">${part}%</td></tr>`;
+  });
+  const t25=totalesAño[2025],t24=totalesAño[2024];
+  h+=`<tr class="total-row"><td></td><td>TOTAL</td><td class="num">${fmt(t25)}</td><td class="num">${fmt(t24)}</td><td class="num">${pctBadge(pct(t25,t24))}</td><td class="num">${fmt(totalesAño[2023])}</td><td class="num">${pctBadge(pct(t25,totalesAño[2023]))}</td><td class="num">100%</td></tr>`;
+  h+='</tbody>';
+  tbl.innerHTML=h;
+}
+
+let lineChart=null;
+function renderDesglose(){
+  const cat=document.getElementById('selCategoria').value;
+  const skus=sku2025.filter(s=>s.cat===cat).sort((a,b)=>b.total-a.total);
+  const activeSkus=skus.filter(s=>s.total>0);
+
+  // Line chart
+  destroyChart('chartLineSKU');
+  charts['chartLineSKU']=new Chart(document.getElementById('chartLineSKU'),{
+    type:'line',
+    data:{labels:MONTHS,
+      datasets:activeSkus.map((s,i)=>({label:s.cod,data:s.meses,borderColor:clr(i),backgroundColor:'transparent',tension:.35,pointRadius:3,borderWidth:2}))},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:12}}},
+      scales:{y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{callback:v=>fmt(v)}},x:{grid:{display:false}}}}
+  });
+
+  // SKU 2025 table
+  const t=document.getElementById('tblSKU2025');
+  let h=`<thead><tr><th>Cód. Corto</th><th>Descripción</th>${MONTHS.map(m=>`<th class="num">${m}</th>`).join('')}<th class="num">TOTAL</th><th class="num">Stock Disp.</th></tr></thead><tbody>`;
+  skus.forEach(s=>{
+    const bg=s.total===0?'color:var(--text3)':'';
+    h+=`<tr style="${bg}"><td>${s.cod}</td><td class="desc">${s.desc}</td>${s.meses.map(v=>`<td class="num">${v===0?'—':fmt(v)}</td>`).join('')}<td class="num" style="font-weight:700">${fmt(s.total)}</td><td class="num ${s.stock===0?'quiebre':s.stock<10?'warn-cell':'ok-cell'}">${fmt(s.stock)}</td></tr>`;
+  });
+  const totM=MONTHS.map((_,mi)=>skus.reduce((a,s)=>a+s.meses[mi],0));
+  const totT=skus.reduce((a,s)=>a+s.total,0);
+  h+=`<tr class="total-row"><td colspan="2">TOTAL CATEGORÍA</td>${totM.map(v=>`<td class="num">${fmt(v)}</td>`).join('')}<td class="num">${fmt(totT)}</td><td class="num">—</td></tr>`;
+  h+='</tbody>';
+  t.innerHTML=h;
+
+  // Tabla categoría por año
+  const t2=document.getElementById('tblCatAnio');
+  const d=ventasAño[cat]||{};
+  let h2=`<thead><tr><th>Categoría</th><th class="num">2021</th><th class="num">2022</th><th class="num">Var%</th><th class="num">2023</th><th class="num">Var%</th><th class="num">2024</th><th class="num">Var%</th><th class="num">2025</th><th class="num">Var%</th><th class="num">2026 YTD</th><th class="num">Var%</th></tr></thead><tbody>`;
+  const yrs=[2021,2022,2023,2024,2025,2026];
+  h2+=`<tr><td class="name">${cat}</td>`;
+  yrs.forEach((y,i)=>{
+    h2+=`<td class="num">${fmt(d[y]||0)}</td>`;
+    if(i>0) h2+=`<td class="num">${pctBadge(pct(d[y]||0,d[yrs[i-1]]||0))}</td>`;
+  });
+  h2+='</tr></tbody>';
+  t2.innerHTML=h2;
+}
+
+function renderCobertura(){
+  const allCols=['y2021','y2022','y2023','y2024','y2025','y2026'];
+  const colLabels=['2021','2022','2023','2024','2025','2026 YTD'];
+
+  // Table
+  const t=document.getElementById('tblCobertura');
+  let h=`<thead><tr><th>Categoría</th>${colLabels.map(y=>`<th class="num">${y}</th>`).join('')}<th class="num">Promedio</th></tr></thead><tbody>`;
+  const colSums=[0,0,0,0,0,0], colCounts=[0,0,0,0,0,0];
+  cobertura.forEach(row=>{
+    const vals=allCols.map(c=>row[c]);
+    const known=vals.filter(v=>v!=null);
+    const avg=known.length?Math.round(known.reduce((a,b)=>a+b,0)/known.length):null;
+    vals.forEach((v,i)=>{if(v!=null){colSums[i]+=v;colCounts[i]++;}});
+    h+=`<tr><td class="name">${row.cat}</td>${vals.map(v=>`<td class="num">${v==null?'—':fmt(v)}</td>`).join('')}<td class="num" style="font-weight:600;color:var(--orange)">${fmt(avg)}</td></tr>`;
+  });
+  // Column averages row
+  const colAvgs=colSums.map((s,i)=>colCounts[i]?Math.round(s/colCounts[i]):null);
+  h+=`<tr class="avg-row"><td>PROMEDIO</td>${colAvgs.map(a=>`<td class="num">${fmt(a)}</td>`).join('')}<td class="num">—</td></tr>`;
+  h+='</tbody>';
+  t.innerHTML=h;
+
+  // Chart - top 5 by 2025
+  const top5=cobertura.filter(r=>r.y2025!=null).sort((a,b)=>b.y2025-a.y2025).slice(0,5);
+  destroyChart('chartCobertura');
+  charts['chartCobertura']=new Chart(document.getElementById('chartCobertura'),{
+    type:'line',
+    data:{labels:colLabels,
+      datasets:top5.map((r,i)=>({label:r.cat,data:allCols.map(c=>r[c]||null),borderColor:clr(i),backgroundColor:'transparent',tension:.35,pointRadius:4,borderWidth:2,spanGaps:true}))},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:12}}},
+      scales:{y:{grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}
+  });
+}
+
+function renderForecast(){
+  // Agregar totales por categoría
+  const byCat={};
+  forecast2026.forEach(f=>{
+    if(!byCat[f.cat]) byCat[f.cat]=0;
+    byCat[f.cat]+=f.total;
+  });
+
+  // Ventas 2025 por SKU
+  const sales2025map={};
+  sku2025.forEach(s=>{sales2025map[s.cod]=s.total;});
+
+  // KPIs
+  const totalFc=forecast2026.reduce((a,f)=>a+f.total,0);
+  const totalFcQ1Apr=forecast2026.reduce((a,f)=>a+f.meses[0]+f.meses[1]+f.meses[2]+f.meses[3],0);
+  const t25=totalesAño[2025];
+  document.getElementById('kpi-forecast').innerHTML=`
+    <div class="kpi"><div class="k-label">Forecast Total 2026</div><div class="k-val">${fmt(totalFc)}</div><div class="k-sub">Unidades proyectadas</div>${pctBadge(pct(totalFc,t25))}</div>
+    <div class="kpi"><div class="k-label">Forecast Q1+Abr 2026</div><div class="k-val">${fmt(totalFcQ1Apr)}</div><div class="k-sub">Ene–Abr acumulado</div></div>
+    <div class="kpi"><div class="k-label">SKUs con Forecast</div><div class="k-val">${forecast2026.filter(f=>f.total>0).length}</div><div class="k-sub">De ${forecast2026.length} total</div></div>
+    <div class="kpi"><div class="k-label">Crecim. Forecast vs 2025</div><div class="k-val">${pct(totalFc,t25)}%</div><div class="k-sub">Proyección anual</div></div>
+  `;
+
+  // Table
+  const t=document.getElementById('tblForecast');
+  const sorted=[...forecast2026].sort((a,b)=>b.total-a.total);
+  let h=`<thead><tr><th>Cat.</th><th>Código</th><th>Descripción</th>${MONTHS.map(m=>`<th class="num">${m}</th>`).join('')}<th class="num">TOTAL FC</th><th class="num">Vta 2025</th><th class="num">Crecim. %</th></tr></thead><tbody>`;
+  sorted.forEach(f=>{
+    const s25=sales2025map[f.cod]||0;
+    const vp=pct(f.total,s25);
+    const rowBg=f.total===0?'opacity:.6':'';
+    h+=`<tr style="${rowBg}"><td style="font-size:.62rem">${f.cat.split(' ')[0]}</td><td>${f.cod}</td><td class="desc">${f.desc}</td>${f.meses.map(v=>`<td class="num">${v===0?'—':fmt(v)}</td>`).join('')}<td class="num" style="font-weight:700">${fmt(f.total)}</td><td class="num">${fmt(s25)}</td><td class="num">${pctBadge(vp)}</td></tr>`;
+  });
+  // Totalizador
+  const totM=MONTHS.map((_,mi)=>forecast2026.reduce((a,f)=>a+f.meses[mi],0));
+  h+=`<tr class="total-row"><td colspan="3">TOTAL GENERAL</td>${totM.map(v=>`<td class="num">${fmt(v)}</td>`).join('')}<td class="num">${fmt(totalFc)}</td><td class="num">${fmt(t25)}</td><td class="num">${pctBadge(pct(totalFc,t25))}</td></tr>`;
+  h+='</tbody>';
+  t.innerHTML=h;
+
+  // Chart por categoría
+  const catData=Object.entries(byCat).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]);
+  destroyChart('chartForecastCat');
+  charts['chartForecastCat']=new Chart(document.getElementById('chartForecastCat'),{
+    type:'bar',
+    data:{labels:catData.map(x=>x[0]),
+      datasets:[
+        {label:'Forecast 2026',data:catData.map(x=>x[1]),backgroundColor:'#F26522',borderRadius:5},
+        {label:'Real 2025',data:catData.map(x=>ventasAño[x[0]]?ventasAño[x[0]][2025]||0:0),backgroundColor:'rgba(26,26,26,.35)',borderRadius:5}
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'top',labels:{font:{size:10},boxWidth:12}}},
+      scales:{y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{callback:v=>fmt(v)}},x:{grid:{display:false},ticks:{font:{size:9}}}}}
+  });
+}
+
+function renderQ1(){
+  // Q1 by cat: sum Jan+Feb+Mar from sku2025 grouped by cat
+  function q1Cat(cat, yr){
+    if(yr===2025){
+      return sku2025.filter(s=>s.cat===cat).reduce((a,s)=>a+s.meses[0]+s.meses[1]+s.meses[2],0);
+    }
+    // Approximate from category annual totals using seasonal factor (Q1 ~25% of annual on average)
+    const annual=ventasAño[cat]?ventasAño[cat][yr]||0:0;
+    // Known Q1 factors from 2025 data
+    const tot2025=sku2025.filter(s=>s.cat===cat).reduce((a,s)=>a+s.total,0);
+    const q1_2025=sku2025.filter(s=>s.cat===cat).reduce((a,s)=>a+s.meses[0]+s.meses[1]+s.meses[2],0);
+    const factor=tot2025>0?q1_2025/tot2025:0.25;
+    return Math.round(annual*factor);
+  }
+
+  function q1_2026_cat(cat){
+    return forecast2026.filter(f=>f.cat===cat).reduce((a,f)=>a+f.meses[0]+f.meses[1]+f.meses[2],0);
+  }
+
+  const allQ1=CATS.map(cat=>{
+    const q_2021=q1Cat(cat,2021), q_2022=q1Cat(cat,2022), q_2023=q1Cat(cat,2023), q_2024=q1Cat(cat,2024), q_2025=q1Cat(cat,2025);
+    const q_2026=q1_2026_cat(cat);
+    const bestQ1=Math.max(q_2021,q_2022,q_2023,q_2024,q_2025);
+    const bestYear=[2021,2022,2023,2024,2025].find(y=>q1Cat(cat,y)===bestQ1)||2024;
+    return {cat,q_2021,q_2022,q_2023,q_2024,q_2025,q_2026,bestQ1,bestYear};
+  }).filter(x=>x.q_2025>0||x.q_2026>0);
+
+  const totQ25=allQ1.reduce((a,x)=>a+x.q_2025,0);
+  const totQ26=allQ1.reduce((a,x)=>a+x.q_2026,0);
+  const totBest=allQ1.reduce((a,x)=>a+x.bestQ1,0);
+
+  // KPIs
+  document.getElementById('kpi-q1').innerHTML=`
+    <div class="kpi"><div class="k-label">Q1 2026 Total (Forecast)</div><div class="k-val">${fmt(totQ26)}</div><div class="k-sub">Ene–Mar proyectado</div>${pctBadge(pct(totQ26,totQ25))}</div>
+    <div class="kpi"><div class="k-label">Q1 2025 Total</div><div class="k-val">${fmt(totQ25)}</div><div class="k-sub">Ene–Mar real</div></div>
+    <div class="kpi"><div class="k-label">Mejor Q1 Histórico</div><div class="k-val">${fmt(totBest)}</div><div class="k-sub">Máximo registrado</div></div>
+    <div class="kpi"><div class="k-label">Var Q1 26 vs Mejor</div><div class="k-val">${pct(totQ26,totBest)}%</div><div class="k-sub">vs mejor Q1 histórico</div></div>
+  `;
+
+  // Table
+  const t=document.getElementById('tblQ1');
+  let h=`<thead><tr><th>Categoría</th><th class="num">Q1 2021</th><th class="num">Q1 2022</th><th class="num">Q1 2023</th><th class="num">Q1 2024</th><th class="num">Q1 2025</th><th class="num">Q1 2026 FC</th><th class="num">Var 26 vs 25</th><th class="num">Mejor Q1</th><th class="num">Año Mejor</th><th class="num">Var 26 vs Mejor</th></tr></thead><tbody>`;
+  allQ1.sort((a,b)=>b.q_2025-a.q_2025).forEach(x=>{
+    const v2625=pct(x.q_2026,x.q_2025);
+    const vBest=pct(x.q_2026,x.bestQ1);
+    h+=`<tr><td class="name">${x.cat}</td><td class="num">${fmt(x.q_2021)}</td><td class="num">${fmt(x.q_2022)}</td><td class="num">${fmt(x.q_2023)}</td><td class="num">${fmt(x.q_2024)}</td><td class="num" style="font-weight:600">${fmt(x.q_2025)}</td><td class="num" style="color:var(--orange);font-weight:700">${fmt(x.q_2026)}</td><td class="num">${pctBadge(v2625)}</td><td class="num">${fmt(x.bestQ1)}</td><td class="num">${x.bestYear}</td><td class="num">${pctBadge(vBest)}</td></tr>`;
+  });
+  h+=`<tr class="total-row"><td>TOTAL</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">${fmt(totQ25)}</td><td class="num">${fmt(totQ26)}</td><td class="num">${pctBadge(pct(totQ26,totQ25))}</td><td class="num">${fmt(totBest)}</td><td class="num">—</td><td class="num">${pctBadge(pct(totQ26,totBest))}</td></tr>`;
+  h+='</tbody>';
+  t.innerHTML=h;
+
+  // Chart Q1 evolution top cats
+  const top5=allQ1.sort((a,b)=>b.q_2025-a.q_2025).slice(0,5);
+  destroyChart('chartQ1');
+  charts['chartQ1']=new Chart(document.getElementById('chartQ1'),{
+    type:'bar',
+    data:{labels:['Q1 2021','Q1 2022','Q1 2023','Q1 2024','Q1 2025','Q1 2026 FC'],
+      datasets:top5.map((x,i)=>({label:x.cat,data:[x.q_2021,x.q_2022,x.q_2023,x.q_2024,x.q_2025,x.q_2026],backgroundColor:clr(i),borderRadius:4}))},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:12}}},
+      scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,ticks:{callback:v=>fmt(v)},grid:{color:'rgba(0,0,0,.05)'}}}}
+  });
+}
+
+function renderQuiebres(){
+  // For each SKU in forecast, compare forecast with stock and historical avg
+  const quiebres=[];
+  forecast2026.forEach(f=>{
+    const sku=sku2025.find(s=>s.cod===f.cod);
+    const stock=sku?sku.stock:0;
+    // Historical monthly avg from 2025
+    const hist25=sku?sku.meses:new Array(12).fill(0);
+    const avgMensual=Math.round(hist25.reduce((a,b)=>a+b,0)/12);
+    // Next 3 months forecast (May, Jun, Jul = índices 4,5,6 — pero en 2026 ya estamos en abril, así que analizamos Mayo en adelante)
+    const fc3=f.meses[4]+f.meses[5]+f.meses[6]; // Mayo-Jul
+    const fcMensual=Math.round(f.meses.filter(v=>v>0).reduce((a,b)=>a+b,0)/(f.meses.filter(v=>v>0).length||1));
+    
+    // Cobertura en meses
+    const coberturaMeses=fcMensual>0?Math.round(stock/fcMensual):99;
+    
+    let status='OK';
+    if(stock===0 && f.total>0) status='QUIEBRE';
+    else if(coberturaMeses<2 && f.total>0) status='RIESGO';
+    else if(coberturaMeses<4 && f.total>0) status='ALERTA';
+    
+    if(f.total>0 || stock>0){
+      quiebres.push({...f, stock, avgMensual, fcMensual, coberturaMeses, status});
+    }
+  });
+
+  const nQuiebre=quiebres.filter(q=>q.status==='QUIEBRE').length;
+  const nRiesgo=quiebres.filter(q=>q.status==='RIESGO').length;
+  const nAlerta=quiebres.filter(q=>q.status==='ALERTA').length;
+
+  document.getElementById('kpi-quiebres').innerHTML=`
+    <div class="kpi" style="--clr:var(--red)"><div class="k-label">SKUs en Quiebre</div><div class="k-val" style="color:var(--red)">${nQuiebre}</div><div class="k-sub">Stock 0 con forecast positivo</div></div>
+    <div class="kpi"><div class="k-label">SKUs en Riesgo</div><div class="k-val" style="color:var(--amber)">${nRiesgo}</div><div class="k-sub">Cobertura menor a 2 meses</div></div>
+    <div class="kpi"><div class="k-label">SKUs en Alerta</div><div class="k-val" style="color:#B45309">${nAlerta}</div><div class="k-sub">Cobertura 2–4 meses</div></div>
+    <div class="kpi"><div class="k-label">SKUs con Cobertura OK</div><div class="k-val" style="color:var(--green)">${quiebres.length-nQuiebre-nRiesgo-nAlerta}</div><div class="k-sub">Cobertura mayor 4 meses</div></div>
+  `;
+
+  // Table sorted: quiebres first
+  const order={QUIEBRE:0,RIESGO:1,ALERTA:2,OK:3};
+  quiebres.sort((a,b)=>order[a.status]-order[b.status]||(b.fcMensual-a.fcMensual));
+
+  const t=document.getElementById('tblQuiebres');
+  let h=`<thead><tr><th>Estado</th><th>Cat.</th><th>Cód.</th><th>Descripción</th><th class="num">Stock Actual</th><th class="num">FC Mensual Prom.</th><th class="num">Vta Hist Prom/mes</th><th class="num">Cobertura (meses)</th><th class="num">FC Total 2026</th><th class="num">FC May–Jul</th></tr></thead><tbody>`;
+  quiebres.forEach(q=>{
+    const statusBadge=q.status==='QUIEBRE'?`<span class="badge brk">⚠ QUIEBRE</span>`:
+      q.status==='RIESGO'?`<span class="badge down">RIESGO</span>`:
+      q.status==='ALERTA'?`<span class="badge warn">ALERTA</span>`:
+      `<span class="badge ok">OK</span>`;
+    const stockClass=q.status==='QUIEBRE'?'quiebre':q.status==='RIESGO'?'warn-cell':q.status==='ALERTA'?'warn-cell':'ok-cell';
+    const covClass=q.coberturaMeses<2?'quiebre':q.coberturaMeses<4?'warn-cell':q.coberturaMeses>12?'':' ok-cell';
+    const fc3=q.meses[4]+q.meses[5]+q.meses[6];
+    h+=`<tr><td>${statusBadge}</td><td style="font-size:.62rem">${q.cat.split(' ')[0]}</td><td>${q.cod}</td><td class="desc">${q.desc}</td>
+      <td class="num ${stockClass}">${fmt(q.stock)}</td>
+      <td class="num">${fmt(q.fcMensual)}</td>
+      <td class="num">${fmt(q.avgMensual)}</td>
+      <td class="num ${covClass}">${q.coberturaMeses>=99?'>12':fmt(q.coberturaMeses)}</td>
+      <td class="num">${fmt(q.total)}</td>
+      <td class="num">${fmt(fc3)}</td>
+    </tr>`;
+  });
+  h+='</tbody>';
+  t.innerHTML=h;
+}
+
+// ============= NAVIGATION =============
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  event.target.classList.add('active');
+
+  if(id==='resumen') renderResumen();
+  else if(id==='ranking') renderRanking();
+  else if(id==='desglose') renderDesglose();
+  else if(id==='cobertura') renderCobertura();
+  else if(id==='forecast') renderForecast();
+  else if(id==='q1') renderQ1();
+  else if(id==='quiebres') renderQuiebres();
+}
+
+// ============= INIT =============
+function init(){
+  // Populate category selector
+  const sel=document.getElementById('selCategoria');
+  CATS.forEach(c=>{
+    const o=document.createElement('option');
+    o.value=c; o.textContent=c;
+    sel.appendChild(o);
+  });
+  renderResumen();
+}
+init();
 </script>
 </body>
 </html>
